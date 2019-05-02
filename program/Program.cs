@@ -1,6 +1,7 @@
 ﻿using System;
 using ProjectWorking.Mezzi;
 using System.Threading;
+using CSRedis;
 namespace ProjectWorking
 {
     class Program
