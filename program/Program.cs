@@ -10,8 +10,6 @@ namespace ProjectWorking
 {
     class Program
     {
-        private static string URL = "https://sub.domain.com/objects.json";
-        private static string urlParameters = "?api_key=123";
         static void Main(string[] args)
         {
             var redis = new RedisClient("127.0.0.1");
@@ -20,31 +18,47 @@ namespace ProjectWorking
             Pullman p3 = new Pullman(3,30); 
             while(true)
             {
-            Thread.Sleep(2000);
-            p1.Update();
-            Console.WriteLine(p1.JsonCreator());
-            redis.LPush("sensors_data", p1.JsonCreator());
+                Thread.Sleep(1000);
+                p1.Update();
+                redis.LPush("sensors_data", p1.JsonCreator());
             /* p2.Update();
             Console.WriteLine(p2.JsonCreator());
             p3.Update();
             Console.WriteLine(p3.JsonCreator()); */
-            Console.WriteLine(redis.BLPop(30, "sensors_data"));
             // SendData(p1);
+                SendData("data");
+                // if(ping())
+                // {
+                    
+                // };
             }
         }
-        // static void SendData(Pullman data)
-        // {
-        //     using (var client = new HttpClient())
-        //     {
-        //         client.BaseAddress = new Uri("http://localhost:3000/");
-        //         client.DefaultRequestHeaders.Accept.Clear();
-        //         client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        //         // HTTP POST
-        //         //var content = new StringContent(data, Encoding.UTF8, "application/json");
-        //         //var response = client.PostAsync("test", data);
-        //         response = client.PostAsJsonAsync("api/products", data);
-        //     }
-        // }
+        static void SendData(string data)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://127.0.0.1:3000");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
+                // HTTP POST
+                var content = new StringContent(data, Encoding.UTF8);
+                //var response = client.PostAsync("test", data);
+                client.PostAsync("/test", content);
+            }
+        }
+       static bool ping()
+        {
+            System.Net.NetworkInformation.Ping pingSender = new System.Net.NetworkInformation.Ping();
+            System.Net.NetworkInformation.PingReply reply = pingSender.Send("8.8.8.8");
+            if (reply.Status == System.Net.NetworkInformation.IPStatus.Success)
+            {                
+                return true;
+            }
+            else
+            {                
+                return false;
+            }
+        }
     }
 }
 
