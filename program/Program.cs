@@ -23,13 +23,16 @@ namespace ProjectWorking
                 Thread.Sleep(1000);
                 p1.Update();
                 redis.LPush("sensors_data", p1.JsonCreator());
+                //Console.WriteLine(p1.JsonCreator());
                 /* p2.Update();
                 Console.WriteLine(p2.JsonCreator());
                 p3.Update();
                 Console.WriteLine(p3.JsonCreator()); */
+                
                 if(ping()){
                     sendToApi(redis.BLPop(30, "sensors_data"));
                 };
+                                
             }
         }
        static bool ping()
