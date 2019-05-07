@@ -5,7 +5,9 @@ using System.Net.Http;
 using System.Text;
 using System.Net.Http.Headers; 
 using System.Threading.Tasks;
+using System.Net.Http.Formatting;
 using CSRedis;
+using System.Net;
 namespace ProjectWorking
 {
     class Program
@@ -21,29 +23,13 @@ namespace ProjectWorking
                 Thread.Sleep(1000);
                 p1.Update();
                 redis.LPush("sensors_data", p1.JsonCreator());
-            /* p2.Update();
-            Console.WriteLine(p2.JsonCreator());
-            p3.Update();
-            Console.WriteLine(p3.JsonCreator()); */
-            // SendData(p1);
-                SendData("data");
-                // if(ping())
-                // {
-                    
-                // };
-            }
-        }
-        static void SendData(string data)
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://127.0.0.1:3000");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
-                // HTTP POST
-                var content = new StringContent(data, Encoding.UTF8);
-                //var response = client.PostAsync("test", data);
-                client.PostAsync("/test", content);
+                /* p2.Update();
+                Console.WriteLine(p2.JsonCreator());
+                p3.Update();
+                Console.WriteLine(p3.JsonCreator()); */
+                if(ping()){
+                    sendToApi(redis.BLPop(30, "sensors_data"));
+                };
             }
         }
        static bool ping()
@@ -59,6 +45,20 @@ namespace ProjectWorking
                 return false;
             }
         }
+        static async void sendToApi(string data)
+        {
+             using (var client = new HttpClient())  
+            {  
+                client.BaseAddress = new Uri("http://127.0.0.1:3000/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+                var content = new StringContent(data, Encoding.UTF8);
+                HttpResponseMessage response = await client.PostAsync("test", content);
+                response.EnsureSuccessStatusCode();
+            } 
+        }
+        
     }
 }
 

@@ -1,0 +1,11 @@
+C:\git\ProjectWork_MDM\program\bin\Debug\netcoreapp2.1\ProjectWorking.deps.json
+C:\git\ProjectWork_MDM\program\bin\Debug\netcoreapp2.1\ProjectWorking.runtimeconfig.json
+C:\git\ProjectWork_MDM\program\bin\Debug\netcoreapp2.1\ProjectWorking.runtimeconfig.dev.json
+C:\git\ProjectWork_MDM\program\bin\Debug\netcoreapp2.1\ProjectWorking.dll
+C:\git\ProjectWork_MDM\program\bin\Debug\netcoreapp2.1\ProjectWorking.pdb
+C:\git\ProjectWork_MDM\program\obj\Debug\netcoreapp2.1\ProjectWorking.csprojAssemblyReference.cache
+C:\git\ProjectWork_MDM\program\obj\Debug\netcoreapp2.1\ProjectWorking.csproj.CoreCompileInputs.cache
+C:\git\ProjectWork_MDM\program\obj\Debug\netcoreapp2.1\ProjectWorking.AssemblyInfoInputs.cache
+C:\git\ProjectWork_MDM\program\obj\Debug\netcoreapp2.1\ProjectWorking.AssemblyInfo.cs
+C:\git\ProjectWork_MDM\program\obj\Debug\netcoreapp2.1\ProjectWorking.dll
+C:\git\ProjectWork_MDM\program\obj\Debug\netcoreapp2.1\ProjectWorking.pdb
