@@ -745,11 +745,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\git\\ProjectWork_MDM\\program\\ProjectWorking.csproj",
+      "projectUniqueName": "c:\\Users\\utente\\Documents\\Progetto\\ProjectWork_MDM\\program\\ProjectWorking.csproj",
       "projectName": "ProjectWorking",
-      "projectPath": "c:\\git\\ProjectWork_MDM\\program\\ProjectWorking.csproj",
+      "projectPath": "c:\\Users\\utente\\Documents\\Progetto\\ProjectWork_MDM\\program\\ProjectWorking.csproj",
       "packagesPath": "C:\\Users\\utente\\.nuget\\packages\\",
-      "outputPath": "c:\\git\\ProjectWork_MDM\\program\\obj\\",
+      "outputPath": "c:\\Users\\utente\\Documents\\Progetto\\ProjectWork_MDM\\program\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -9,3 +9,14 @@ C:\git\ProjectWork_MDM\program\obj\Debug\netcoreapp2.1\ProjectWorking.AssemblyIn
 C:\git\ProjectWork_MDM\program\obj\Debug\netcoreapp2.1\ProjectWorking.AssemblyInfo.cs
 C:\git\ProjectWork_MDM\program\obj\Debug\netcoreapp2.1\ProjectWorking.dll
 C:\git\ProjectWork_MDM\program\obj\Debug\netcoreapp2.1\ProjectWorking.pdb
+c:\Users\utente\Documents\Progetto\ProjectWork_MDM\program\bin\Debug\netcoreapp2.1\ProjectWorking.deps.json
+c:\Users\utente\Documents\Progetto\ProjectWork_MDM\program\bin\Debug\netcoreapp2.1\ProjectWorking.runtimeconfig.json
+c:\Users\utente\Documents\Progetto\ProjectWork_MDM\program\bin\Debug\netcoreapp2.1\ProjectWorking.runtimeconfig.dev.json
+c:\Users\utente\Documents\Progetto\ProjectWork_MDM\program\bin\Debug\netcoreapp2.1\ProjectWorking.dll
+c:\Users\utente\Documents\Progetto\ProjectWork_MDM\program\bin\Debug\netcoreapp2.1\ProjectWorking.pdb
+c:\Users\utente\Documents\Progetto\ProjectWork_MDM\program\obj\Debug\netcoreapp2.1\ProjectWorking.csprojAssemblyReference.cache
+c:\Users\utente\Documents\Progetto\ProjectWork_MDM\program\obj\Debug\netcoreapp2.1\ProjectWorking.csproj.CoreCompileInputs.cache
+c:\Users\utente\Documents\Progetto\ProjectWork_MDM\program\obj\Debug\netcoreapp2.1\ProjectWorking.AssemblyInfoInputs.cache
+c:\Users\utente\Documents\Progetto\ProjectWork_MDM\program\obj\Debug\netcoreapp2.1\ProjectWorking.AssemblyInfo.cs
+c:\Users\utente\Documents\Progetto\ProjectWork_MDM\program\obj\Debug\netcoreapp2.1\ProjectWorking.dll
+c:\Users\utente\Documents\Progetto\ProjectWork_MDM\program\obj\Debug\netcoreapp2.1\ProjectWorking.pdb

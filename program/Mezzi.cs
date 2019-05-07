@@ -13,12 +13,14 @@ namespace ProjectWorking.Mezzi
         private int _tempososta;
         private Contapersone _contaPersone;
         private Posizione _posizione;
+        private DateTime _oraInserimento;
         public Pullman(int id, int numeroposti)
         {
             _id = id;
             _numeroPosti = numeroposti;
             _contaPersone = new Contapersone(_numeroPosti);
             _posizione = new Posizione(CoordsGenerator(),CoordsGenerator());
+            _oraInserimento = DateTime.Now;
         }
         public void Update()
         {
@@ -41,10 +43,11 @@ namespace ProjectWorking.Mezzi
                     _movimento = true;
                 }
             }
+            _oraInserimento=DateTime.Now;
         }
         public string JsonCreator()
         {
-            string json = "{\""+_id+"\":{\"Latitudine\":\""+_posizione.GetLat()+"\",\"Longitudine\":\""+_posizione.GetLon()+"\",\"Passeggeri\":\""+_contaPersone.GetNumber()+"\",\"Movimento\":\""+_movimento+"\"}";
+            string json = "{\""+_id+"\":{\"Latitudine\":\""+_posizione.GetLat()+"\",\"Longitudine\":\""+_posizione.GetLon()+"\",\"Passeggeri\":\""+_contaPersone.GetNumber()+"\",\"OraInserimento\":\""+ _oraInserimento +"\",\"Movimento\":\"" + _movimento+"\"}";
             return json;
         }
         private static double CoordsGenerator()
