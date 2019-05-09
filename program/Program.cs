@@ -22,17 +22,20 @@ namespace ProjectWorking
             {
                 Thread.Sleep(1000);
                 p1.Update();
-                redis.LPush("sensors_data", p1.JsonCreator());
+                p2.Update();
+                p3.Update();
+                //redis.LPush("sensors_data", p1.JsonCreator());
                 //Console.WriteLine(p1.JsonCreator());
                 /* p2.Update();
                 Console.WriteLine(p2.JsonCreator());
                 p3.Update();
                 Console.WriteLine(p3.JsonCreator()); */
-                
                 if(ping()){
-                    sendToApi(redis.BLPop(30, "sensors_data"));
-                };
-                                
+                    //sendToApi(redis.BLPop(30, "sensors_data"));
+                    sendToApi(p1.JsonCreator());
+                    sendToApi(p2.JsonCreator());
+                    sendToApi(p3.JsonCreator());
+                };              
             }
         }
        static bool ping()
@@ -50,6 +53,7 @@ namespace ProjectWorking
         }
         static async void sendToApi(string data)
         {
+            try{
              using (var client = new HttpClient())  
             {  
                 client.BaseAddress = new Uri("http://127.0.0.1:3000/");
@@ -57,9 +61,10 @@ namespace ProjectWorking
                 client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
                 var content = new StringContent(data, Encoding.UTF8);
-                HttpResponseMessage response = await client.PostAsync("test", content);
+                HttpResponseMessage response = await client.PostAsync("api/pullman", content);
                 response.EnsureSuccessStatusCode();
             } 
+            }catch{};
         }
         
     }

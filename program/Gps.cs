@@ -4,6 +4,7 @@ namespace ProjectWorking.Gps
 {
     class Posizione
     {
+        private static Random rndom = new Random();
         private double _latitudine;
         private double _longitudine;
         public Posizione(double latitudine, double longitudine)

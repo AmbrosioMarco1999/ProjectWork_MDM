@@ -6,6 +6,7 @@
     "main": "pathToMain",
     "dependencies": {
         "fastify": "^2.3.0",
-        "influx": "^5.0.7"
+        "influx": "^5.0.7",
+        "socket.io": "^2.2.0"
     }
 }

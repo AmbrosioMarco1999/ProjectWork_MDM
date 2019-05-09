@@ -47,7 +47,7 @@ namespace ProjectWorking.Mezzi
         }
         public string JsonCreator()
         {
-            string json = "{\""+_id+"\":{\"Latitudine\":\""+_posizione.GetLat()+"\",\"Longitudine\":\""+_posizione.GetLon()+"\",\"Passeggeri\":\""+_contaPersone.GetNumber()+"\",\"OraInserimento\":\""+ _oraInserimento +"\",\"Movimento\":\"" + _movimento+"\"}";
+            string json = "{\""+"id"+"\":\""+_id+"\",\"Latitudine\":\""+_posizione.GetLat()+"\",\"Longitudine\":\""+_posizione.GetLon()+"\",\"Passeggeri\":\""+_contaPersone.GetNumber()+"\",\"OraInserimento\":\""+ _oraInserimento +"\",\"Movimento\":\"" + _movimento+"\"}";
             return json;
         }
         private static double CoordsGenerator()
