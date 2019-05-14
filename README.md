@@ -1,3 +1,0 @@
-# ProjectWork_MDM
-
-#Bo
