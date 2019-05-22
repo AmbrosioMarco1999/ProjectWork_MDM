@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Net.Http.Formatting;
 using CSRedis;
 using System.Net;
+using Newtonsoft.Json;
+
 namespace ProjectWorking
 {
     class Program
@@ -22,20 +24,20 @@ namespace ProjectWorking
             {
                 Thread.Sleep(1000);
                 p1.Update();
-                p2.Update();
-                p3.Update();
+                //p2.Update();
+                //p3.Update();
                 //redis.LPush("sensors_data", p1.JsonCreator());
-                //Console.WriteLine(p1.JsonCreator());
+                Console.WriteLine(JsonCreator(p1));
                 /* p2.Update();
-                Console.WriteLine(p2.JsonCreator());
+                //Console.WriteLine(JsonCreator(p2));
                 p3.Update();
-                Console.WriteLine(p3.JsonCreator()); */
-                if(ping()){
+                //Console.WriteLine(JsonCreator(p1)); */
+                /* if(ping()){
                     //sendToApi(redis.BLPop(30, "sensors_data"));
-                    sendToApi(p1.JsonCreator());
-                    sendToApi(p2.JsonCreator());
-                    sendToApi(p3.JsonCreator());
-                };              
+                    sendToApi(JsonCreator(p1));
+                    sendToApi(JsonCreator(p2));
+                    sendToApi(JsonCreator(p3));
+                }; */              
             }
         }
        static bool ping()
@@ -65,6 +67,13 @@ namespace ProjectWorking
                 response.EnsureSuccessStatusCode();
             } 
             }catch{};
+        }
+
+        static string JsonCreator(Pullman p){
+            string json = JsonConvert.SerializeObject(p, Formatting.Indented);
+            Console.WriteLine(json);
+            return json;
+            
         }
         
     }
