@@ -19,5 +19,15 @@ namespace ProjectWorking.Percorsi
             _partenza.Change();
             _arrivo.Change();
         }
+
+        public Posizione GetPartenza()
+        {
+            return _partenza;            
+        }
+
+        public Posizione GetArrivo()
+        {
+            return _arrivo;
+        }
     }
 }
