@@ -78,11 +78,11 @@ namespace ProjectWorking.Mezzi
             }
             _oraInserimento=DateTime.Now;
         }
-        /* public string JsonCreator()
+        public string JsonCreator()
         {
-            string json = "{\""+"id"+"\":\""+_id+"\",\"Latitudine\":\""+_posizione.GetLat()+"\",\"Longitudine\":\""+_posizione.GetLon()+"\",\"Passeggeri\":\""+_contaPersone.GetNumber()+"\",\"OraInserimento\":\""+ _oraInserimento +"\",\"Movimento\":\"" + _movimento+"\"}";
+            string json = "{\""+"id"+"\":\""+Id+"\",\"Latitudine\":\""+Longitudine+"\",\"Longitudine\":\""+Latitudine+"\",\"Passeggeri\":\""+PersoneABordo+"\",\"OraInserimento\":\""+ OraInserimento +"\",\"Movimento\":\"" + Movimento+"\"}";
             return json;
-        } */
+        } 
         private static double CoordsGenerator()
         {
             double minimum = -20;
