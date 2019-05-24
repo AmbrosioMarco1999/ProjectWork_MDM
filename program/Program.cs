@@ -22,12 +22,13 @@ namespace ProjectWorking
             Pullman p3 = new Pullman(3,30, 3); 
             while(true)
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(10000);
                 p1.Update();
                 //p2.Update();
                 //p3.Update();
                 //redis.LPush("sensors_data", p1.JsonCreator());
-                Console.WriteLine(JsonCreator(p1));
+                //Console.WriteLine(JsonCreator(p1));
+                sendToApi(JsonCreator(p1));
                 /* p2.Update();
                 //Console.WriteLine(JsonCreator(p2));
                 p3.Update();
@@ -53,29 +54,43 @@ namespace ProjectWorking
                 return false;
             }
         }
-        static async void sendToApi(string data)
-        {
-            try{
-             using (var client = new HttpClient())  
-            {  
-                client.BaseAddress = new Uri("http://127.0.0.1:3000/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-                var content = new StringContent(data, Encoding.UTF8);
-                HttpResponseMessage response = await client.PostAsync("api/pullman", content);
-                response.EnsureSuccessStatusCode();
-            } 
-            }catch{};
-        }
+        // static async void sendToApi(string data)
+        // {
+        //     try{
+        //      using (var client = new HttpClient())  
+        //     {  
+        //         client.BaseAddress = new Uri("http://127.0.0.1:5000/");
+        //         client.DefaultRequestHeaders.Accept.Clear();
+        //         client.DefaultRequestHeaders.Accept.Add(
+        //         new MediaTypeWithQualityHeaderValue("application/json"));
+        //         var content = new StringContent(data, Encoding.UTF8);
+        //         Console.WriteLine(data);
+        //         HttpResponseMessage response = await client.PostAsync("pullman", content);
+        //         response.EnsureSuccessStatusCode();
+        //     } 
+        //     }catch{};
+        // }
 
         static string JsonCreator(Pullman p){
             string json = JsonConvert.SerializeObject(p, Formatting.Indented);
-            Console.WriteLine(json);
+            //Console.WriteLine(json);
             return json;
             
         }
-        
+        static async void sendToApi(string data){
+            try{
+            using (var client = new HttpClient())
+        {
+            client.BaseAddress = new Uri("http://127.0.0.1:5000/");
+            var content = new StringContent(data, Encoding.UTF8, "application/json"); 
+            var result = await client.PostAsync("pullman", content);
+            string resultContent = await result.Content.ReadAsStringAsync();
+
+        }
+            }catch{
+
+            }
+        }
     }
 }
 
