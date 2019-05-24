@@ -2,15 +2,17 @@
 using ProjectWorking.ContaPersone;
 using ProjectWorking.Gps;
 using System.Threading;
-
+using ProjectWorking.Percorsi;
+using System.Collections.Generic;
 
 namespace ProjectWorking.Mezzi
 {
     class Pullman
     {
         private static Random rnd = new Random();
-        private int _id;
 
+        List<Percorso> Percorsi=GeneratorlstPercorsi();
+        private int _id;
         public int Id
         {
             get => _id;
@@ -45,15 +47,18 @@ namespace ProjectWorking.Mezzi
         {
             get => _oraInserimento.ToString("MM/dd/yyyy HH:mm:ss");
         }
-
-
-        public Pullman(int id, int numeroposti)
+        private Percorso _percorso;
+        public int IdPercorso{
+            get => Percorsi.IndexOf(_percorso);
+        }
+        public Pullman(int id, int numeroposti, int idPercorso)
         {
             _id = id;
             _numeroPosti = numeroposti;
             _contaPersone = new Contapersone(_numeroPosti);
             _posizione = new Posizione(CoordsGenerator(),CoordsGenerator());
             _oraInserimento = DateTime.Now;
+            _percorso=Percorsi[idPercorso];
         }
         public void Update()
         {
@@ -78,6 +83,7 @@ namespace ProjectWorking.Mezzi
             }
             _oraInserimento=DateTime.Now;
         }
+
         /* public string JsonCreator()
         {
             string json = "{\""+"id"+"\":\""+_id+"\",\"Latitudine\":\""+_posizione.GetLat()+"\",\"Longitudine\":\""+_posizione.GetLon()+"\",\"Passeggeri\":\""+_contaPersone.GetNumber()+"\",\"OraInserimento\":\""+ _oraInserimento +"\",\"Movimento\":\"" + _movimento+"\"}";
@@ -89,6 +95,30 @@ namespace ProjectWorking.Mezzi
             double maximum = 20;
             Random random = new Random();
             return Math.Round((random.NextDouble() * (maximum - minimum) + minimum),5);
+        }
+
+        private static Percorso PercorsoGenerator()
+        {
+            Posizione partenza = new Posizione(CoordsGenerator(), CoordsGenerator());
+            Posizione arrivo = new Posizione(CoordsGenerator(), CoordsGenerator());
+
+            Percorso percorso = new Percorso(partenza, arrivo);
+
+
+            return percorso;
+        }
+
+        private static List<Percorso> GeneratorlstPercorsi()
+        {
+            List<Percorso> lstPercorsi = new List<Percorso>();
+
+            for (int i = 0; i < 10; i++)
+            {
+                //lstPercorsi[i]=PercorsoGenerator();
+                lstPercorsi.Add(PercorsoGenerator());
+            }
+
+            return lstPercorsi;
         }
 
         

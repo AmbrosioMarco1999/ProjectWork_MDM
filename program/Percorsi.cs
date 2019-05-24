@@ -3,21 +3,21 @@ using ProjectWorking.Gps;
 
 namespace ProjectWorking.Percorsi
 {
-    class Percorsi
+    class Percorso
     {
         Posizione _partenza;
         Posizione _arrivo;
 
-        public Percorsi(Posizione partenza, Posizione arrivo)
+        public Percorso(Posizione partenza, Posizione arrivo)
         {
             _partenza = partenza;
             _arrivo = arrivo;
         }
 
-        public Percorsi()
+        public Percorso()
         {
-            _partenza.Change();
-            _arrivo.Change();
+            //_partenza.Change();
+            //_arrivo.Change();
         }
 
         public Posizione GetPartenza()

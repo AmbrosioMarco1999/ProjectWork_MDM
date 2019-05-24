@@ -17,9 +17,9 @@ namespace ProjectWorking
         static void Main(string[] args)
         {
             var redis = new RedisClient("127.0.0.1");
-            Pullman p1 = new Pullman(1,70);  
-            Pullman p2 = new Pullman(2,50); 
-            Pullman p3 = new Pullman(3,30); 
+            Pullman p1 = new Pullman(1,70, 1);  
+            Pullman p2 = new Pullman(2,50, 2); 
+            Pullman p3 = new Pullman(3,30, 3); 
             while(true)
             {
                 Thread.Sleep(1000);
