@@ -1,0 +1,9 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
+<script>
+    var socket = io();
+    socket.emit('event');
+    socket.on('test',function(data) {
+        console.log(data);
+    })
+
+</script>
