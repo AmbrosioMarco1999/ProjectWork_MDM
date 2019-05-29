@@ -7,6 +7,7 @@ namespace ProjectWorking.ContaPersone
         private static Random rndom = new Random();
         private int _numeroMaxPersone;
         private int _numeroPasseggeri;
+        
         public Contapersone(int posti)
         {
             _numeroMaxPersone = posti;

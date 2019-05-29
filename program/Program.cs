@@ -27,17 +27,11 @@ namespace ProjectWorking
             {
                 Thread.Sleep(1000);
                 p1.Update();
-                //p2.Update();
-                //p3.Update();
+                p2.Update();
+                p3.Update();
                 redis.LPush("sensors_data",JsonCreator(p1));
                 redis.LPush("sensors_data",JsonCreator(p2));
                 redis.LPush("sensors_data",JsonCreator(p3));
-                //Console.WriteLine(JsonCreator(p1));
-                //sendToApi(JsonCreator(p1));
-                /* p2.Update();
-                //Console.WriteLine(JsonCreator(p2));
-                p3.Update();
-                //Console.WriteLine(JsonCreator(p1)); */
                 if(ping()){
                     if(count>0){
                         for(int i=0 ;i<count * pullmanNumber;i++){
@@ -47,9 +41,6 @@ namespace ProjectWorking
                     for(int i = 0; i < pullmanNumber; i++){
                         sendToApi(redis.BLPop(30, "sensors_data"));
                     }
-                    //sendToApi(JsonCreator(p1));
-                    //sendToApi(JsonCreatr(p2));
-                    //sendToApi(JsonCreator(p3));
                     count=0;
                 }
                 else{
@@ -57,33 +48,34 @@ namespace ProjectWorking
                 }            
             }
         }
+        
        static bool ping()
         {
             Ping pingSender = new Ping();
             PingReply reply = pingSender.Send("8.8.8.8");
-            if (reply.Status == System.Net.NetworkInformation.IPStatus.Success)
+            if (reply.Status == IPStatus.Success)
             {                
                 return true;
             }
             return false;
         }
+
         static string JsonCreator(Pullman p){
             string json = JsonConvert.SerializeObject(p, Formatting.Indented);
-            //Console.WriteLine(json);
-            return json;
-            
+            return json;            
         }
+
         static async void sendToApi(string data){
             try{
-            using (var client = new HttpClient())
-        {
-            client.BaseAddress = new Uri("http://127.0.0.1:5000/");
-            var content = new StringContent(data, Encoding.UTF8, "application/json"); 
-            var result = await client.PostAsync("pullman", content);
-            string resultContent = await result.Content.ReadAsStringAsync();
-
-        }
-            }catch{
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://127.0.0.1:5000/");
+                    var content = new StringContent(data, Encoding.UTF8, "application/json"); 
+                    var result = await client.PostAsync("pullman", content);
+                    string resultContent = await result.Content.ReadAsStringAsync();
+                }
+            }catch
+            {
 
             }
         }

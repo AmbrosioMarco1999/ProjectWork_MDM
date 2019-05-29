@@ -18,39 +18,41 @@ namespace ProjectWorking.Mezzi
             get => _id;
             set => _id = value;
         }
-        private int _numeroPosti;
-        private bool _movimento = true;
 
+        private int _numeroPosti;
+
+        private bool _movimento = true;
         public bool Movimento{
             get => _movimento;
         }
+
         private int _tempososta;
+
         private Contapersone _contaPersone;
         public int PersoneABordo
         {
             get => _contaPersone.GetNumber();
         }
+
         private Posizione _posizione;
-
-        /* public List<Posizione> PosizioneAttuale{
-            
-        } */
-
         public double Longitudine{
             get => _posizione.GetLon();
         }
         public double Latitudine{
             get => _posizione.GetLat();
         }
+
         private DateTime _oraInserimento;
         public string OraInserimento
         {
             get => _oraInserimento.ToString("MM/dd/yyyy HH:mm:ss");
         }
+
         private Percorso _percorso;
         public int IdPercorso{
             get => Percorsi.IndexOf(_percorso);
         }
+
         public Pullman(int id, int numeroposti, int idPercorso)
         {
             _id = id;
@@ -60,6 +62,7 @@ namespace ProjectWorking.Mezzi
             _oraInserimento = DateTime.Now;
             _percorso=Percorsi[idPercorso];
         }
+
         public void Update()
         {
             if(_movimento == true)
@@ -84,11 +87,6 @@ namespace ProjectWorking.Mezzi
             _oraInserimento=DateTime.Now;
         }
 
-        /* public string JsonCreator()
-        {
-            string json = "{\""+"id"+"\":\""+Id+"\",\"Latitudine\":\""+Longitudine+"\",\"Longitudine\":\""+Latitudine+"\",\"Passeggeri\":\""+PersoneABordo+"\",\"OraInserimento\":\""+ OraInserimento +"\",\"Movimento\":\"" + Movimento+"\"}";
-            return json;
-        } */
         private static double CoordsGenerator()
         {
             double minimum = -20;

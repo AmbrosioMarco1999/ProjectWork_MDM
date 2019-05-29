@@ -16,8 +16,7 @@ namespace ProjectWorking.Percorsi
 
         public Percorso()
         {
-            //_partenza.Change();
-            //_arrivo.Change();
+        
         }
 
         public Posizione GetPartenza()
