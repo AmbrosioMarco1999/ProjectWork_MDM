@@ -119,8 +119,6 @@ namespace ProjectWorking.Mezzi
             }
 
             return lstPercorsi;
-        }
-
-        
+        }        
     }
 }

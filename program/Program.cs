@@ -9,6 +9,7 @@ using System.Net.Http.Formatting;
 using CSRedis;
 using System.Net;
 using Newtonsoft.Json;
+using System.Net.NetworkInformation;
 
 namespace ProjectWorking
 {
@@ -16,61 +17,56 @@ namespace ProjectWorking
     {
         static void Main(string[] args)
         {
-            var redis = new RedisClient("127.0.0.1");
+            int pullmanNumber = 3;
+            int count = 0;
+            var redis = new RedisClient("192.168.101.143");
             Pullman p1 = new Pullman(1,70, 1);  
             Pullman p2 = new Pullman(2,50, 2); 
-            Pullman p3 = new Pullman(3,30, 3); 
+            Pullman p3 = new Pullman(3,30, 3);
             while(true)
             {
-                Thread.Sleep(10000);
+                Thread.Sleep(1000);
                 p1.Update();
                 //p2.Update();
                 //p3.Update();
-                //redis.LPush("sensors_data", p1.JsonCreator());
+                redis.LPush("sensors_data",JsonCreator(p1));
+                redis.LPush("sensors_data",JsonCreator(p2));
+                redis.LPush("sensors_data",JsonCreator(p3));
                 //Console.WriteLine(JsonCreator(p1));
-                sendToApi(JsonCreator(p1));
+                //sendToApi(JsonCreator(p1));
                 /* p2.Update();
                 //Console.WriteLine(JsonCreator(p2));
                 p3.Update();
                 //Console.WriteLine(JsonCreator(p1)); */
-                /* if(ping()){
-                    //sendToApi(redis.BLPop(30, "sensors_data"));
-                    sendToApi(JsonCreator(p1));
-                    sendToApi(JsonCreator(p2));
-                    sendToApi(JsonCreator(p3));
-                }; */              
+                if(ping()){
+                    if(count>0){
+                        for(int i=0 ;i<count * pullmanNumber;i++){
+                            sendToApi(redis.BLPop(30, "sensors_data"));
+                        }
+                    }
+                    for(int i = 0; i < pullmanNumber; i++){
+                        sendToApi(redis.BLPop(30, "sensors_data"));
+                    }
+                    //sendToApi(JsonCreator(p1));
+                    //sendToApi(JsonCreatr(p2));
+                    //sendToApi(JsonCreator(p3));
+                    count=0;
+                }
+                else{
+                    count ++;
+                }            
             }
         }
        static bool ping()
         {
-            System.Net.NetworkInformation.Ping pingSender = new System.Net.NetworkInformation.Ping();
-            System.Net.NetworkInformation.PingReply reply = pingSender.Send("8.8.8.8");
+            Ping pingSender = new Ping();
+            PingReply reply = pingSender.Send("8.8.8.8");
             if (reply.Status == System.Net.NetworkInformation.IPStatus.Success)
             {                
                 return true;
             }
-            else
-            {                
-                return false;
-            }
+            return false;
         }
-        // static async void sendToApi(string data)
-        // {
-        //     try{
-        //      using (var client = new HttpClient())  
-        //     {  
-        //         client.BaseAddress = new Uri("http://127.0.0.1:5000/");
-        //         client.DefaultRequestHeaders.Accept.Clear();
-        //         client.DefaultRequestHeaders.Accept.Add(
-        //         new MediaTypeWithQualityHeaderValue("application/json"));
-        //         var content = new StringContent(data, Encoding.UTF8);
-        //         Console.WriteLine(data);
-        //         HttpResponseMessage response = await client.PostAsync("pullman", content);
-        //         response.EnsureSuccessStatusCode();
-        //     } 
-        //     }catch{};
-        // }
-
         static string JsonCreator(Pullman p){
             string json = JsonConvert.SerializeObject(p, Formatting.Indented);
             //Console.WriteLine(json);
