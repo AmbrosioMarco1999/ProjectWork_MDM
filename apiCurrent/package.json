@@ -1,7 +1,7 @@
 {
-    "name": "testmio",
-    "description": "description",
-    "authors": "me",
+    "name": "Api",
+    "description": "Backend per Project Working",
+    "authors": "Rigo Marco",
     "version": "1.0.0",
     "main": "app.js",
     "dependencies": {
