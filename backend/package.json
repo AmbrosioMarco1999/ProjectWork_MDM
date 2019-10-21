@@ -1,0 +1,30 @@
+{
+    "name": "api",
+    "description": "Backend per Project Working",
+    "authors": "Rigo Marco",
+    "version": "1.0.0",
+    "main": "app.js",
+    "dependencies": {
+        "bcryptjs": "2.4.3",
+        "body-parser": "1.19.0",
+        "connect-flash": "0.1.1",
+        "connect-redis": "3.4.1",
+        "cookie-parser": "1.4.4",
+        "cors": "2.8.5",
+        "ejs": "2.6.1",
+        "express": "4.16.4",
+        "express-ejs-layouts": "2.5.0",
+        "express-session": "1.15.6",
+        "influx": "5.0.7",
+        "jsonwebtoken": "8.5.1",
+        "mongoose": "5.4.1",
+        "passport": "0.4.0",
+        "passport-local": "1.0.0",
+        "passport.socketio": "3.7.0",
+        "redis": "2.8.0",
+        "redis-url": "1.2.1",
+        "socket.io": "2.2.0",
+        "socketio-jwt-auth": "0.1.0",
+        "svg-captcha": "1.4.0"
+    }
+}

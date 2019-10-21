@@ -1,0 +1,32 @@
+using System;
+using ProjectWorking.Gps;
+
+namespace ProjectWorking.Percorsi
+{
+    class Percorso
+    {
+        Posizione _partenza;
+        Posizione _arrivo;
+
+        public Percorso(Posizione partenza, Posizione arrivo)
+        {
+            _partenza = partenza;
+            _arrivo = arrivo;
+        }
+
+        public Percorso()
+        {
+        
+        }
+
+        public Posizione GetPartenza()
+        {
+            return _partenza;            
+        }
+
+        public Posizione GetArrivo()
+        {
+            return _arrivo;
+        }
+    }
+}
