@@ -1,4 +1,4 @@
-const ip = '192.168.43.133';
+const ip = '192.168.0.18';
 //MondoDB string
 exports.mongoConnectionString = 'mongodb://admin:admin123@'+ip+'/admin';
 //Redis ip

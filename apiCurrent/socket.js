@@ -29,7 +29,7 @@ module.exports = (server, serveradmin) => {
     }, 1000);
     async function data(){
       await influx.query(
-        'select * from pullman WHERE time > now() - 1m order by time desc LIMIT 20'
+        'select * from pullman WHERE time > now() - 10s order by time desc LIMIT 1'
         )
         .catch(err=>{
           

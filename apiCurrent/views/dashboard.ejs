@@ -24,31 +24,97 @@
 <script>
     var socket = io();
     socket.emit('event');
+    var chart = c3.generate({
+        bindto: '#chart',
+        padding: {
+            left: 50,
+            right: 50
+        },
+        point: {
+            show: false
+        },
+        data: {
+            type: "spline",
+            x: 'x',
+            //        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
+            columns: [
+                ['x', (new Date().getTime()), (new Date().getTime()) - 10000, (new Date().getTime()), (new Date().getTime()) - 20000, (new Date().getTime()), (new Date().getTime()) - 30000, (new Date().getTime()), (new Date().getTime()) - 40000, (new Date().getTime()), (new Date().getTime()) - 50000, (new Date().getTime()), (new Date().getTime()) - 60000],
+                ['passeggeri', null, null, null, null, null, null, null],
+            ],
+            connectNull: true
+        },
+        axis: {
+            x: {
+                type: 'timeseries',
+                tick: {
+                    format: '%H:%M:%S'
+                },
+                label: {
+                    text: 'Time',
+                    position: 'outer-center',
+                }
+            },
+            y: {
+                max: 70,
+                min: 0,
+                label: {
+                    position: 'outer-middle',
+                }
+            }
+        }
+    });
     socket.on('msg',function(data) {
-        if(data.length > 0){
-        writeOnChart(data)
+        // var d = new Date(data[0].time)
+        // var h = d.getHours();
+        // var m = d.getMinutes();
+        // var s = d.getSeconds();
+        // let date = h + ":" + m + ":" + s;
+        chart.flow({
+            columns: [
+                ['x', (new Date().getTime())],
+                ['passeggeri', data[0].personeABordo || 0],
+            ],
+        });
         $('#pas').html(data[0].personeABordo);
         $('#lat').html(data[0].latitudine);
         $('#lon').html(data[0].longitudine);
         $('#mov').html(data[0].movimento);
-        }
+
     })
 
     function writeOnChart(data){
-        var array = [];
+        let array = []
+        var people = 'passeggeri'
         for(let i = data.length -1 ;i > 1; i--){
-            array.push(data[i].personeABordo);
+            chart.flow({
+            columns: [
+                ['x', data[i]],
+            ],
+        });
         }
-        array[0] = 'Passeggeri';
-    var chart = c3.generate({
-    bindto: '#chart',
-    data: {
-      columns: [
-        array
-      ]
+        // chart.flow({
+        //     columns: [
+        //         ['x', array],
+        //     ],
+        // });
+        // chart.load({
+        //     columns: [
+        //         ['x', 0]
+        //     ]
+        // });
     }
-});
-    }
+    // setInterval(() => {
+    //     chart.flow({
+    //         columns: [
+    //             ['x', (new Date().getTime())],
+    //         ],
+    //     });
+    //     chart.load({
+    //         columns: [
+    //             ['x', 1]
+    //         ]
+    //     });
+    // }, 1000);
     // $(document).on('click', 'a.scroll-to-top', function(e) {
     // var $anchor = $(this);
     // $('html, body').stop().animate({
