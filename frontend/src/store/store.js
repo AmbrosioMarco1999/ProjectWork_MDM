@@ -17,12 +17,12 @@ const store = new Vuex.Store({
   getters: {
     isLogged: state => {
       if (state.token) {
-        socketIO.io.query = 'auth_token='+ state.token
+        // socketIO.io.query = 'auth_token='+ state.token
         return true
       }
       let token = localStorage.getItem('AUTH_TOKEN')
       if (token) {
-        socketIO.io.query = 'auth_token='+ token
+        // socketIO.io.query = 'auth_token='+ token
         state.token = token
         return true
       }
@@ -43,7 +43,7 @@ const store = new Vuex.Store({
       console.log(token)
       state.token = token
       localStorage.setItem('AUTH_TOKEN', token)
-      socketIO.io.query = 'auth_token='+ state.token
+      // socketIO.io.query = 'auth_token='+ state.token
     },
     LOGOUT: (state) => {
       state.token = false
@@ -57,7 +57,7 @@ const store = new Vuex.Store({
     },
     SET_ACTIVE_PULLMANS: (state, payload) => {
       state.active_pullmans = payload
-    }
+    },
   },
   actions: {
     USER_LOGIN(context, payload) {
