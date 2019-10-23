@@ -9,7 +9,8 @@ export default {
   name: "Graph",
   data() {
     return {
-      chart: null
+      chart: null,
+      targa: null
     };
   },
   props: {},
@@ -43,11 +44,9 @@ export default {
 
     setInterval(() => {
       if (this.$store.getters.pullman) {
-        this.$socket.emit("GET_PULLMAN_DATA", this.$store.getters.pullman.targa);
-      }
-    }, 1000);
-
-    this.chart = c3.generate({
+        if(this.targa != this.$store.getters.pullman.targa){
+          this.targa = this.$store.getters.pullman.targa
+              this.chart = c3.generate({
       bindto: this.$el,
       padding: {
         left: 50,
@@ -100,6 +99,11 @@ export default {
         }
       }
     });
+        }
+
+        this.$socket.emit("GET_PULLMAN_DATA", this.targa);
+      }
+    }, 1000);
   }
 };
 </script>
