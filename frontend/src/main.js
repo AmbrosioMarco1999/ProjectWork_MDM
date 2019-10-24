@@ -4,6 +4,19 @@ import router from './router'
 import store from './store/store'
 import socketIO from './config/socket'
 
+import { Icon }  from 'leaflet'
+import 'leaflet/dist/leaflet.css'
+
+
+// this part resolve an issue where the markers would not appear
+delete Icon.Default.prototype._getIconUrl;
+
+Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+});
+
 require('../node_modules/c3/c3.min.css')
 
 import './../node_modules/bulma/css/bulma.css';
