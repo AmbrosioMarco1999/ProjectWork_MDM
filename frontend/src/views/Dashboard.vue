@@ -5,7 +5,7 @@
     <div class="column is-2 is-narrow-mobile is-fullheight is-hidden-mobile">
       <PullmanMenu />
     </div>
-    <div class="column"><Map /></div>
+    <div class="column"><br><Map /></div>
     <div class="column">
       <h1 class="title">{{ pullman.targa }}</h1>
       <Graph @pullmanData="pullmanData" />
