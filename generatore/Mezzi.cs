@@ -12,11 +12,11 @@ namespace ProjectWorking.Mezzi
         private static Random rnd = new Random();
 
         List<Percorso> Percorsi=GeneratorlstPercorsi();
-        private int _id;
-        public int Id
+        private string _targa;
+        public string Targa
         {
-            get => _id;
-            set => _id = value;
+            get => _targa;
+            set => _targa = value;
         }
 
         private int _numeroPosti;
@@ -53,9 +53,9 @@ namespace ProjectWorking.Mezzi
             get => Percorsi.IndexOf(_percorso);
         }
 
-        public Pullman(int id, int numeroposti, int idPercorso)
+        public Pullman(string targa, int numeroposti, int idPercorso)
         {
-            _id = id;
+            _targa = targa;
             _numeroPosti = numeroposti;
             _contaPersone = new Contapersone(_numeroPosti);
             _posizione = new Posizione(CoordsGenerator(),CoordsGenerator());
