@@ -17,8 +17,6 @@ namespace ProjectWorking
     {
         static void Main(string[] args)
         {
-            int pullmanNumber = 3;
-            int count = 0;
             var redis = new RedisClient("192.168.0.18");
             Pullman p1 = new Pullman(1,70, 1);  
             Pullman p2 = new Pullman(2,50, 2); 
