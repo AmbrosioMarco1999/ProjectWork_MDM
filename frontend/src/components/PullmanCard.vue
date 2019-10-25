@@ -10,9 +10,6 @@
             <span class="has-text-success" v-if="isActive">Active</span>
             <span class="has-text-danger" v-else>Offline</span>
           </p>
-          <p class="card-footer-item">
-            <span>Targa</span>
-          </p>
         </footer>
       </div>
     </a>

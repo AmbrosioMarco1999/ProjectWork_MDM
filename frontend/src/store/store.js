@@ -13,16 +13,15 @@ const store = new Vuex.Store({
     token: null,
     pullmans: [],
     selected_pullman: null,
+    lastPullmanRes: {}
   },
   getters: {
     isLogged: state => {
       if (state.token) {
-        // socketIO.io.query = 'auth_token='+ state.token
         return true
       }
       let token = localStorage.getItem('AUTH_TOKEN')
       if (token) {
-        // socketIO.io.query = 'auth_token='+ token
         state.token = token
         return true
       }
@@ -37,13 +36,15 @@ const store = new Vuex.Store({
     pullman: state => {
       return state.selected_pullman
     },
+    getPullmanInfo: state => {
+      return state.lastPullmanRes
+    }
   },
   mutations: {
     SET_TOKEN: (state, token) => {
       console.log(token)
       state.token = token
       localStorage.setItem('AUTH_TOKEN', token)
-      // socketIO.io.query = 'auth_token='+ state.token
     },
     LOGOUT: (state) => {
       state.token = false
@@ -58,6 +59,9 @@ const store = new Vuex.Store({
     SET_ACTIVE_PULLMANS: (state, payload) => {
       state.active_pullmans = payload
     },
+    SET_PULLMAN_INFLUX: (state, payload) => {
+      state.lastPullmanRes = payload
+    }
   },
   actions: {
     USER_LOGIN(context, payload) {
