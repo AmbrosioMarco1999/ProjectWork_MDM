@@ -1,23 +1,35 @@
 <template>
-  <div v-if="loading">Loading</div>
-  <div v-else-if="error">Dashboard</div>
-  <div class="columns" v-else>
-    <div class="column is-2 is-narrow-mobile is-fullheight is-hidden-mobile">
-      <PullmanMenu />
-    </div>
-    <div class="column"><br><Map /></div>
-    <div class="column">
-      <h1 class="title">{{ pullman.targa }}</h1>
-      <Graph @pullmanData="pullmanData" />
-      <strong>Max Posti:</strong>{{ pullman.max_posti }} <br>
-      <strong>Allestimento:</strong>{{ pullman.allestimento }}<br>
-      <strong>Modello:</strong>{{ pullman.modello }}<br>
-      <strong>Anno:</strong>{{ pullman.anno }}<br>
-      <strong>Targa:</strong>{{ pullman.targa }}<br>
-      <strong>Latitudine:</strong>{{ selectedPullmanData.latitudine }}<br>
-      <strong>Longitudine:</strong>{{ selectedPullmanData.longitudine }}<br>
-      <strong>Movimento:</strong>{{ selectedPullmanData.movimento }}<br>
-      <strong>Persone a bordo:</strong>{{ selectedPullmanData.personeABordo }}
+  <div>
+    <div v-if="loading">Loading</div>
+    <div v-else-if="error">Dashboard</div>
+    <div v-else>
+      <div class="columns">
+        <div class="column is-2 is-narrow-mobile is-fullheight">
+          <PullmanMenu />
+        </div>
+        <div class="column is-10">
+          <div class="columns">
+            <div class="column is-12 has-text-centered" style="height:60vh">
+              <h1 class="title">{{ pullman.targa }}</h1>
+              <Map />
+            </div>
+            </div>
+            <div class="columns">
+              <div class="column is-3">
+              <strong>Max Posti:</strong>{{ pullman.max_posti }} <br>
+              <strong>Allestimento:</strong>{{ pullman.allestimento }}<br>
+              <strong>Modello:</strong>{{ pullman.modello }}<br>
+              <strong>Anno:</strong>{{ pullman.anno }}<br>
+              <strong>Targa:</strong>{{ pullman.targa }}<br>
+              <strong>Latitudine:</strong>{{ selectedPullmanData.latitudine }}<br>
+              <strong>Longitudine:</strong>{{ selectedPullmanData.longitudine }}<br>
+              <strong>Movimento:</strong>{{ selectedPullmanData.movimento }}<br>
+              <strong>Persone a bordo:</strong>{{ selectedPullmanData.personeABordo }}
+              </div>
+              <div class="column"> <Graph @pullmanData="pullmanData" /> </div>
+            </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

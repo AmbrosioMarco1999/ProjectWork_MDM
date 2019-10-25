@@ -54,7 +54,7 @@ export default {
 <style scoped>
 .container {
   overflow-y: auto;
-  max-height: calc(100vh - 52px);
+  max-height: calc(100vh - 100px);
 }
 
 .container::-webkit-scrollbar-track {

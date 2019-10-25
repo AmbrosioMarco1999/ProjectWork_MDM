@@ -1,5 +1,5 @@
 <template>
-  <l-map style="height: 95%; width: 100%" :zoom="zoom" :center="center" :options="{zoomControl: true}">
+  <l-map style="height: 90%; width: 100%" :zoom="zoom" :center="center" :options="{zoomControl: true}">
     <l-tile-layer :url="url"></l-tile-layer>
     <l-polyline
       :lat-lngs="polyline.latlngs"
