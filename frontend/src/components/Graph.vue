@@ -82,7 +82,7 @@ export default {
                     }
                   },
                   y: {
-                    max: 70,
+                    max: this.$store.getters.pullman.max_posti,
                     min: 0,
                     label: {
                       position: "outer-middle"

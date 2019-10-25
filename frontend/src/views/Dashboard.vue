@@ -19,7 +19,7 @@
               <strong>Max Posti:</strong>{{ pullman.max_posti }} <br>
               <strong>Allestimento:</strong>{{ pullman.allestimento }}<br>
               <strong>Modello:</strong>{{ pullman.modello }}<br>
-              <strong>Anno:</strong>{{ pullman.anno }}<br>
+              <strong>Anno:</strong>{{ pullman.anno ? pullman.anno.slice(0, 10) : null }}<br>
               <strong>Targa:</strong>{{ pullman.targa }}<br>
               <strong>Latitudine:</strong>{{ selectedPullmanData.latitudine }}<br>
               <strong>Longitudine:</strong>{{ selectedPullmanData.longitudine }}<br>
