@@ -53,8 +53,14 @@ namespace ProjectWorking.Mezzi
             get => Percorsi.IndexOf(_percorso);
         }
 
+        private bool _started;
+        public bool Started{
+            get => _started;
+        }
+
         public Pullman(string targa, int numeroposti, int idPercorso)
         {
+            _started = false;
             _targa = targa;
             _numeroPosti = numeroposti;
             _contaPersone = new Contapersone(_numeroPosti);
@@ -65,6 +71,7 @@ namespace ProjectWorking.Mezzi
 
         public void Update()
         {
+            
             if(_movimento == true)
             {
             _posizione.Change();

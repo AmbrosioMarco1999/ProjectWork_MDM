@@ -1,5 +1,6 @@
 using System;
 using ProjectWorking.Gps;
+using System.Collections.Generic;
 
 namespace ProjectWorking.Percorsi
 {
@@ -8,15 +9,20 @@ namespace ProjectWorking.Percorsi
         Posizione _partenza;
         Posizione _arrivo;
 
+        List<Posizione> lstTappe = new List<Posizione>();
+
         public Percorso(Posizione partenza, Posizione arrivo)
         {
-            _partenza = partenza;
-            _arrivo = arrivo;
+            //_partenza = partenza;
+            //_arrivo = arrivo;
+            lstTappe[0] = partenza;
+            lstTappe[lstTappe.Count - 1] = arrivo;
         }
 
         public Percorso()
         {
-        
+            _partenza = lstTappe[0];
+            _arrivo = lstTappe[lstTappe.Count - 1];
         }
 
         public Posizione GetPartenza()

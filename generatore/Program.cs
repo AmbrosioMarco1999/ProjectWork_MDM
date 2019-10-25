@@ -30,9 +30,15 @@ namespace ProjectWorking
                 p1.Update();
                 p2.Update();
                 p3.Update();
+                p4.Update();
+                p5.Update();
+                p6.Update();
                 sendToApi(JsonCreator(p2));
                 sendToApi(JsonCreator(p3));
                 sendToApi(JsonCreator(p1));
+                sendToApi(JsonCreator(p4));
+                sendToApi(JsonCreator(p5));
+                sendToApi(JsonCreator(p6));
                 //if(ping()){
                  //   if(count>0){
                  //       for(int i=0 ;i<count * pullmanNumber;i++){
