@@ -37,8 +37,8 @@ export default {
   sockets: {},
   created() {
     setInterval(() => {
-      this.center = this.$store.getters.firstCoords
-      this.polyline.latlngs = this.$store.getters.coords
+      this.center = this.$store.getters.firstCoords || [0, 0]
+      this.polyline.latlngs = this.$store.getters.coords || [[0, 0]]
     },1000)
   },
   mounted() {}

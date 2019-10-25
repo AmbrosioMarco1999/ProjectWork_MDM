@@ -15,17 +15,7 @@ export default {
   },
   props: {},
   sockets: {},
-  methods: {
-    writeOnChart(data) {
-      let array = [];
-      var people = "passeggeri";
-      for (let i = data.length - 1; i > 1; i--) {
-        chart.flow({
-          columns: [["x", data[i]]]
-        });
-      }
-    }
-  },
+  methods: {},
   computed: {},
   sockets: {},
   created() {},
@@ -49,61 +39,59 @@ export default {
         if(this.targa != this.$store.getters.pullman.targa){
           this.targa = this.$store.getters.pullman.targa
               this.chart = c3.generate({
-      bindto: this.$el,
-      padding: {
-        left: 50,
-        right: 50
-      },
-      point: {
-        show: false
-      },
-      data: {
-        type: "spline",
-        x: "x",
-        //        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
-        columns: [
-          [
-            "x",
-            new Date().getTime(),
-            new Date().getTime() - 10000,
-            new Date().getTime(),
-            new Date().getTime() - 20000,
-            new Date().getTime(),
-            new Date().getTime() - 30000,
-            new Date().getTime(),
-            new Date().getTime() - 40000,
-            new Date().getTime(),
-            new Date().getTime() - 50000,
-            new Date().getTime(),
-            new Date().getTime() - 60000
-          ],
-          ["passeggeri", null, null, null, null, null, null, null]
-        ],
-        connectNull: true
-      },
-      axis: {
-        x: {
-          type: "timeseries",
-          tick: {
-            format: "%H:%M:%S"
-          },
-          label: {
-            text: "Time",
-            position: "outer-center"
-          }
-        },
-        y: {
-          max: 70,
-          min: 0,
-          label: {
-            position: "outer-middle"
-          }
-        }
-      }
-    });
-        }
-
-        this.$socket.emit("GET_PULLMAN_DATA", this.targa);
+                bindto: this.$el,
+                padding: {
+                  left: 50,
+                  right: 50
+                },
+                point: {
+                  show: false
+                },
+                data: {
+                  type: "spline",
+                  x: "x",
+                  columns: [
+                    [
+                      "x",
+                      new Date().getTime(),
+                      new Date().getTime() - 10000,
+                      new Date().getTime(),
+                      new Date().getTime() - 20000,
+                      new Date().getTime(),
+                      new Date().getTime() - 30000,
+                      new Date().getTime(),
+                      new Date().getTime() - 40000,
+                      new Date().getTime(),
+                      new Date().getTime() - 50000,
+                      new Date().getTime(),
+                      new Date().getTime() - 60000
+                    ],
+                    ["passeggeri", null, null, null, null, null, null, null]
+                  ],
+                  connectNull: true
+                },
+                axis: {
+                  x: {
+                    type: "timeseries",
+                    tick: {
+                      format: "%H:%M:%S"
+                    },
+                    label: {
+                      text: "Time",
+                      position: "outer-center"
+                    }
+                  },
+                  y: {
+                    max: 70,
+                    min: 0,
+                    label: {
+                      position: "outer-middle"
+                    }
+                  }
+                }
+              });
+            }
+          this.$socket.emit("GET_PULLMAN_DATA", this.targa);
       }
     }, 1000);
   }
