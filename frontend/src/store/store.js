@@ -72,7 +72,10 @@ const store = new Vuex.Store({
     },
     ADD_COORDS: (state, payload) => {
       state.coords.push(payload)
-    }
+    },
+    SET_ROUTE_DONE: (state, payload) => {
+      state.coords = payload
+    },
   },
   actions: {
     USER_LOGIN(context, payload) {
@@ -102,17 +105,17 @@ const store = new Vuex.Store({
         headers: { 'Authorization': 'Bearer ' + context.getters.token }
       })
     },
-    GET_PERCORSI(context, payload) {
-      Axios.get(apiIP + '/pullmans/route')
-      .then((res) => {
-        // context.commit('SET_PULLMANS', res.data)
-        resolve()
-      })
-      .catch((err) => {
-        reject();
-        console.log(err)
-      })
-    },
+    // GET_PERCORSI(context, payload) {
+    //   Axios.get(apiIP + '/pullmans/route')
+    //   .then((res) => {
+
+    //     resolve()
+    //   })
+    //   .catch((err) => {
+    //     reject();
+    //     console.log(err)
+    //   })
+    // },
   }
 })
 
