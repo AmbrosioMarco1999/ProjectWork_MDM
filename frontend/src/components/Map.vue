@@ -18,9 +18,9 @@ export default {
     return {
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       zoom: 12,
-      center: [0, 0],
+      center: [45.9, 12.6],
       polyline: {
-        latlngs: [[0, 0]],
+        latlngs: [],
         color: 'red'
       }
     };
@@ -37,8 +37,8 @@ export default {
   sockets: {},
   created() {
     setInterval(() => {
-      this.center = this.$store.getters.firstCoords || [0, 0]
-      this.polyline.latlngs = this.$store.getters.coords || [[0, 0]]
+      this.center = this.$store.getters.firstCoords || [45.9626521, 12.6550436]
+      if(this.$store.getters.coords) { this.polyline.latlngs = this.$store.getters.coords }
     },1000)
   },
   mounted() {}
