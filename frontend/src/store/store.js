@@ -102,6 +102,17 @@ const store = new Vuex.Store({
         headers: { 'Authorization': 'Bearer ' + context.getters.token }
       })
     },
+    GET_PERCORSI(context, payload) {
+      Axios.get(apiIP + '/pullmans/route')
+      .then((res) => {
+        // context.commit('SET_PULLMANS', res.data)
+        resolve()
+      })
+      .catch((err) => {
+        reject();
+        console.log(err)
+      })
+    },
   }
 })
 
