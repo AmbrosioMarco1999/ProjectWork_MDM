@@ -28,6 +28,10 @@ const PullmanSchema = new mongoose.Schema({
   active: {
     type: Boolean,
     default: false
+  },
+  started: {
+    type: Boolean,
+    default: false
   }
 });
 
