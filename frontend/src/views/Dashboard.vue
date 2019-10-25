@@ -4,7 +4,7 @@
     <div v-else-if="error">Dashboard</div>
     <div v-else>
       <div class="columns">
-        <div class="column is-2 is-narrow-mobile is-fullheight">
+        <div class="column is-2 is-fullheight">
           <PullmanMenu />
         </div>
         <div class="column is-10">
@@ -15,7 +15,7 @@
             </div>
             </div>
             <div class="columns">
-              <div class="column is-3">
+              <div class="column is-2">
               <strong>Max Posti:</strong>{{ pullman.max_posti }} <br>
               <strong>Allestimento:</strong>{{ pullman.allestimento }}<br>
               <strong>Modello:</strong>{{ pullman.modello }}<br>
@@ -26,7 +26,7 @@
               <strong>Movimento:</strong>{{ selectedPullmanData.movimento }}<br>
               <strong>Persone a bordo:</strong>{{ selectedPullmanData.personeABordo }}
               </div>
-              <div class="column"> <Graph @pullmanData="pullmanData" /> </div>
+              <div class="column is-10"> <Graph @pullmanData="pullmanData" /> </div>
             </div>
         </div>
       </div>
