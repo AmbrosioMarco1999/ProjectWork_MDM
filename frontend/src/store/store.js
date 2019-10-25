@@ -13,7 +13,8 @@ const store = new Vuex.Store({
     token: null,
     pullmans: [],
     selected_pullman: null,
-    lastPullmanRes: {}
+    lastPullmanRes: {},
+    coords: []
   },
   getters: {
     isLogged: state => {
@@ -38,6 +39,12 @@ const store = new Vuex.Store({
     },
     getPullmanInfo: state => {
       return state.lastPullmanRes
+    },
+    coords: state => {
+      return state.coords
+    },
+    firstCoords: state => {
+      return state.coords[0]
     }
   },
   mutations: {
@@ -54,6 +61,7 @@ const store = new Vuex.Store({
       state.pullmans = payload
     },
     SELECT_PULLMAN: (state, payload) => {
+      state.coords = []
       state.selected_pullman = payload
     },
     SET_ACTIVE_PULLMANS: (state, payload) => {
@@ -61,6 +69,9 @@ const store = new Vuex.Store({
     },
     SET_PULLMAN_INFLUX: (state, payload) => {
       state.lastPullmanRes = payload
+    },
+    ADD_COORDS: (state, payload) => {
+      state.coords.push(payload)
     }
   },
   actions: {
