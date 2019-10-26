@@ -11,7 +11,6 @@ export default {
     return {
       chart: null,
       targa: null,
-      lastTime: null,
       interval: null
     };
   },
@@ -27,7 +26,6 @@ export default {
         this.$store.commit('SET_PULLMAN_INFLUX', data[0])
         this.$store.commit('ADD_COORDS', [data[0].latitudine, data[0].longitudine])
         this.$emit('pullmanData',data)
-        this.lastTime = data[0].time
         this.chart.flow({
           columns: [
             ["x", new Date().getTime()],
