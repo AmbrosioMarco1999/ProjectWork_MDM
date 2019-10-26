@@ -10,7 +10,9 @@ export default {
   data() {
     return {
       chart: null,
-      targa: null
+      targa: null,
+      lastTime: null,
+      interval: null
     };
   },
   props: {},
@@ -25,6 +27,7 @@ export default {
         this.$store.commit('SET_PULLMAN_INFLUX', data[0])
         this.$store.commit('ADD_COORDS', [data[0].latitudine, data[0].longitudine])
         this.$emit('pullmanData',data)
+        this.lastTime = data[0].time
         this.chart.flow({
           columns: [
             ["x", new Date().getTime()],
@@ -34,7 +37,7 @@ export default {
       }
     });
 
-    setInterval(() => {
+    this.interval = setInterval(() => {
       if (this.$store.getters.pullman) {
         if(this.targa != this.$store.getters.pullman.targa){
           this.targa = this.$store.getters.pullman.targa
@@ -94,6 +97,9 @@ export default {
           this.$socket.emit("GET_PULLMAN_DATA", this.targa);
       }
     }, 1000);
+  },
+  beforeDestroy: function(){
+    clearInterval(this.interval)
   }
 };
 </script>

@@ -2,7 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store/store'
-import socketIO from './config/socket'
 
 import { Icon }  from 'leaflet'
 import 'leaflet/dist/leaflet.css'
@@ -21,7 +20,6 @@ require('../node_modules/c3/c3.min.css')
 
 import './../node_modules/bulma/css/bulma.css';
 
-Vue.use(socketIO)
 
 Vue.config.productionTip = false
 

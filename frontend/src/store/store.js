@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
-import socketIO from '../config/socket'
+import VueSocketIO from 'vue-socket.io'
 
 Vue.use(Vuex)
 Vue.use(Axios)
@@ -23,7 +23,7 @@ const store = new Vuex.Store({
       }
       let token = localStorage.getItem('AUTH_TOKEN')
       if (token) {
-        state.token = token
+        store.commit('SET_TOKEN', token)
         return true
       }
       return false
@@ -49,9 +49,20 @@ const store = new Vuex.Store({
   },
   mutations: {
     SET_TOKEN: (state, token) => {
-      console.log(token)
       state.token = token
       localStorage.setItem('AUTH_TOKEN', token)
+      let socketIO = new VueSocketIO({
+        debug: true,
+        connection: 'http://127.0.0.1:5000',
+        autoConnect: false,
+        vuex: {
+            store,
+            actionPrefix: 'SOCKET_',
+            mutationPrefix: 'SOCKET_'
+        },
+        options: { query: 'auth_token=' + state.token }
+      })
+      Vue.use(socketIO)
     },
     LOGOUT: (state) => {
       state.token = false
