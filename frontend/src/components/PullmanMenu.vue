@@ -1,6 +1,6 @@
 <template>
   <aside class="column">
-    <p class="menu-label is-hidden-touch">Navigation</p>
+    <p class="menu-label is-hidden-touch has-text-centered">Pullman</p>
     <div class="container">
       <ul class="menu-list">
         <PullmanCard v-for="pullman in getPullmans" v-bind:key="pullman._id" :pullman="pullman" />
