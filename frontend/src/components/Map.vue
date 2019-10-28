@@ -17,7 +17,7 @@ export default {
     data () {
     return {
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-      zoom: 12,
+      zoom: 13,
       center: [45.9, 12.6],
       polyline: {
         latlngs: [],
