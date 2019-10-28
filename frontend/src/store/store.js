@@ -72,8 +72,8 @@ const store = new Vuex.Store({
       state.pullmans = payload
     },
     SELECT_PULLMAN: (state, payload) => {
-      state.coords = []
       state.selected_pullman = payload
+      state.coords = []
     },
     SET_ACTIVE_PULLMANS: (state, payload) => {
       state.active_pullmans = payload
@@ -87,6 +87,9 @@ const store = new Vuex.Store({
     SET_ROUTE_DONE: (state, payload) => {
       state.coords = payload
     },
+    DELETE_COORDS: (state, payload) => {
+      state.coords = []
+    }
   },
   actions: {
     USER_LOGIN(context, payload) {
