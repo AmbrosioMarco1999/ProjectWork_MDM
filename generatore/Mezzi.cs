@@ -14,6 +14,7 @@ namespace ProjectWorking.Mezzi
         private static Random rnd = new Random();
 
         private List<Posizione> _percorsoPullman;
+        [JsonIgnore]
         public List<Posizione> PercorsoPullman
         {
             get => _percorsoPullman;
@@ -89,10 +90,11 @@ namespace ProjectWorking.Mezzi
         public void Update()
         {
             _started = true;
+            //Console.WriteLine("Count: " + (_percorsoPullman.Count-1).ToString());
             if(_movimento == true)
             {
                 if(_rootStatus==(_percorsoPullman.Count-1)){
-                    _rootStatus=0;
+                    _rootStatus=1;
                 }
                 _posizione = _percorsoPullman[_rootStatus];
                 // _posizione.Change();
