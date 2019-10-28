@@ -146,7 +146,7 @@ namespace ProjectWorking.Mezzi
             Posizione posizione=new Posizione();
             List<Posizione>lstTappe=new List<Posizione>();
 
-            StreamReader sr = new StreamReader(@"Percorsi\"+nomeFile+".txt");
+            StreamReader sr = new StreamReader(@"Percorsi/"+nomeFile+".txt");
             while((linea = sr.ReadLine()) != null){
                 if(linea.Trim()=="["){
                     linea = sr.ReadLine();
