@@ -13,7 +13,8 @@ exports.influx_dataPost = async function(req, res) {
                 latitudine: data.Latitudine,
                 longitudine: data.Longitudine,
                 personeABordo: data.PersoneABordo,
-                movimento: data.Movimento
+                movimento: data.Movimento,
+                indexPercorso: data.RootStatus
               },
             }
           ]).catch(err => {

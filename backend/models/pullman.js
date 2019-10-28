@@ -32,6 +32,10 @@ const PullmanSchema = new mongoose.Schema({
   started: {
     type: Boolean,
     default: false
+  },
+  indexPercorso: {
+    type: Number,
+    default: null
   }
 });
 

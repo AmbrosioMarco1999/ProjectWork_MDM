@@ -15,6 +15,7 @@ const influx = new Influx.InfluxDB({
         longitudine: Influx.FieldType.FLOAT, 
         personeABordo: Influx.FieldType.INTEGER,
         movimento: Influx.FieldType.STRING,
+        indexPercorso: Influx.FieldType.INTEGER,
     },
         tags: [
        
