@@ -1,9 +1,11 @@
 ﻿using System;
 using ProjectWorking.ContaPersone;
-using ProjectWorking.Gps;
 using System.Threading;
-using ProjectWorking.Percorsi;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using ProjectWorking.Gps;
+using System.IO;
+
 
 namespace ProjectWorking.Mezzi
 {
@@ -11,7 +13,12 @@ namespace ProjectWorking.Mezzi
     {
         private static Random rnd = new Random();
 
-        List<Percorso> Percorsi=GeneratorlstPercorsi();
+        private List<Posizione> _percorsoPullman;
+        public List<Posizione> PercorsoPullman
+        {
+            get => _percorsoPullman;
+        }
+
         private string _targa;
         public string Targa
         {
@@ -48,34 +55,40 @@ namespace ProjectWorking.Mezzi
             get => _oraInserimento.ToString("MM/dd/yyyy HH:mm:ss");
         }
 
-        private Percorso _percorso;
-        public int IdPercorso{
-            get => Percorsi.IndexOf(_percorso);
-        }
+        // private Percorso _percorso;
+        // public int IdPercorso{
+        //     get => Percorsi.IndexOf(_percorso);
+        // }
+
 
         private bool _started;
         public bool Started{
             get => _started;
         }
 
-        public Pullman(string targa, int numeroposti, int idPercorso)
+        public Pullman(string targa, int numeroposti)
         {
             _started = false;
             _targa = targa;
             _numeroPosti = numeroposti;
+            _percorsoPullman=Percorso(targa);
             _contaPersone = new Contapersone(_numeroPosti);
-            _posizione = new Posizione(CoordsGenerator(),CoordsGenerator());
+            _posizione = _percorsoPullman[0];
             _oraInserimento = DateTime.Now;
-            _percorso=Percorsi[idPercorso];
         }
 
         public void Update()
         {
-            
+            int count=0;
+            _started = true;
             if(_movimento == true)
             {
-            _posizione.Change();
-            int random = rnd.Next(0,30);
+//              _posizione = _percorsoPullman[count];
+                // _posizione.Change();
+                int random = rnd.Next(0,30);
+                count++;
+                _posizione = _percorsoPullman[count];
+                
             if(random == 0)
             {
                 _movimento = false;
@@ -94,15 +107,15 @@ namespace ProjectWorking.Mezzi
             _oraInserimento=DateTime.Now;
         }
 
-        private static double CoordsGenerator()
+/*        private static double CoordsGenerator()
         {
             double minimum = -20;
             double maximum = 20;
             Random random = new Random();
             return Math.Round((random.NextDouble() * (maximum - minimum) + minimum),5);
         }
-
-        private static Percorso PercorsoGenerator()
+*/
+/*        private static Percorso PercorsoGenerator()
         {
             Posizione partenza = new Posizione(CoordsGenerator(), CoordsGenerator());
             Posizione arrivo = new Posizione(CoordsGenerator(), CoordsGenerator());
@@ -112,8 +125,8 @@ namespace ProjectWorking.Mezzi
 
             return percorso;
         }
-
-        private static List<Percorso> GeneratorlstPercorsi()
+*/
+/*        private static List<Percorso> GeneratorlstPercorsi()
         {
             List<Percorso> lstPercorsi = new List<Percorso>();
 
@@ -124,6 +137,27 @@ namespace ProjectWorking.Mezzi
             }
 
             return lstPercorsi;
-        }        
+        }
+*/   
+
+        public List<Posizione> Percorso(string nomeFile)
+        {
+            string linea="";
+            Posizione posizione=new Posizione();
+            List<Posizione>lstTappe=new List<Posizione>();
+
+            StreamReader sr = new StreamReader(@"Percorsi\"+nomeFile+".txt");
+            while((linea = sr.ReadLine()) != null){
+                if(linea.Trim()=="["){
+                    linea = sr.ReadLine();
+                    posizione.SetLat(Convert.ToDouble(linea));
+                    linea=sr.ReadLine();
+                    posizione.SetLon(Convert.ToDouble(linea));
+                    linea=sr.ReadLine();
+                }
+                lstTappe.Add(posizione);
+            }
+            return lstTappe;
+        }
     }
 }
