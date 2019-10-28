@@ -40,6 +40,16 @@ app.use(function (req, res, next) {
 const staticFileMiddleware = express.static('../frontend/dist');
 app.use(staticFileMiddleware);
 
+
+// const buildLocation = '../frontend/dist';
+// app.use((req, res, next) => {
+//   if (!req.originalUrl.includes(buildLocation)) {
+//     res.sendFile(path.resolve(`${__dirname}/${buildLocation}/index.html`));
+//   } else {
+//     next();
+//   }
+// });
+
 app.use('/users', require('./routes/users.js'));
 app.use('/data/pullmans', require('./routes/influx.js'));
 app.use('/pullmans', require('./routes/pullmans.js'));
