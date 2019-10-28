@@ -93,8 +93,8 @@ namespace ProjectWorking.Mezzi
             //Console.WriteLine("Count: " + (_percorsoPullman.Count-1).ToString());
             if(_movimento == true)
             {
-                if(_rootStatus==(_percorsoPullman.Count-1)){
-                    _rootStatus=1;
+                if(_rootStatus==(_percorsoPullman.Count-2)){
+                    _rootStatus=0;
                 }
                 _posizione = _percorsoPullman[_rootStatus];
                 // _posizione.Change();
@@ -102,11 +102,11 @@ namespace ProjectWorking.Mezzi
                 _rootStatus++;
                 //_posizione = _percorsoPullman[_rootStatus];
                 
-            if(random == 0)
-            {
-                _movimento = false;
-                _tempososta = rnd.Next(10,20);   
-            }
+                if(random == 0)
+                {
+                    _movimento = false;
+                    _tempososta = rnd.Next(10,20);   
+                }
             }
             else if(_movimento == false)
             {
