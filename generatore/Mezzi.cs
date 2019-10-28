@@ -65,6 +65,14 @@ namespace ProjectWorking.Mezzi
         public bool Started{
             get => _started;
         }
+        
+        private int _rootStatus;
+
+        public int RootStatus
+        {
+            get => _rootStatus;
+            set => _rootStatus = value;
+        }
 
         public Pullman(string targa, int numeroposti)
         {
@@ -75,19 +83,22 @@ namespace ProjectWorking.Mezzi
             _contaPersone = new Contapersone(_numeroPosti);
             _posizione = _percorsoPullman[0];
             _oraInserimento = DateTime.Now;
+            _rootStatus = 0;
         }
 
         public void Update()
         {
-            int count=0;
             _started = true;
             if(_movimento == true)
             {
-//              _posizione = _percorsoPullman[count];
+                if(_rootStatus==(_percorsoPullman.Count-1)){
+                    _rootStatus=0;
+                }
+                _posizione = _percorsoPullman[_rootStatus];
                 // _posizione.Change();
                 int random = rnd.Next(0,30);
-                count++;
-                _posizione = _percorsoPullman[count];
+                _rootStatus++;
+                //_posizione = _percorsoPullman[_rootStatus];
                 
             if(random == 0)
             {
@@ -151,12 +162,21 @@ namespace ProjectWorking.Mezzi
                 if(linea.Trim()=="["){
                     linea = sr.ReadLine();
                     posizione.SetLat(Convert.ToDouble(linea));
+//                  Console.WriteLine(posizione.GetLat());
                     linea=sr.ReadLine();
                     posizione.SetLon(Convert.ToDouble(linea));
+//                  Console.WriteLine(posizione.GetLon());
                     linea=sr.ReadLine();
                 }
                 lstTappe.Add(posizione);
+                posizione=new Posizione();
             }
+            // foreach (var item in lstTappe)
+            // {
+            //     Console.WriteLine(item.GetLat());
+            //     Console.WriteLine(item.GetLon());
+            //     Console.WriteLine();
+            // }
             return lstTappe;
         }
     }

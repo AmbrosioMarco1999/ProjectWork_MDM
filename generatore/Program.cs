@@ -32,7 +32,9 @@ namespace ProjectWorking
                 p6.Update();
                 
 */              
-                sendToApi(JsonCreator(p1));
+                //sendToApi(JsonCreator(p1));      
+                Console.WriteLine((JsonCreator(p1)));
+
 /*              sendToApi(JsonCreator(p2));
                 sendToApi(JsonCreator(p3));                
                 sendToApi(JsonCreator(p4));
