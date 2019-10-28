@@ -7,7 +7,7 @@ import store from './store/store'
 Vue.use(Router)
 
 const router = new Router({
-  mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes: [
     {
@@ -26,6 +26,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (store.getters.isLogged) {
     to.path == '/' && next({name: 'dashboard'})
+    to.path == '/login' && next({name: 'dashboard'})
     next()
   } else {
     to.path != '/' && next({name: "login"});

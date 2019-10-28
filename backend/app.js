@@ -4,6 +4,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const http = require('http');
 const db = require('./config/keys');
+const path = require('path');
 const app = express();
 
 let dbInit = require('./config/mongoInit')
@@ -34,6 +35,20 @@ app.use(function (req, res, next) {
   // IZI
   next();
 })
+
+//Serving front-end
+const staticFileMiddleware = express.static('../frontend/dist');
+app.use(staticFileMiddleware);
+
+
+// const buildLocation = '../frontend/dist';
+// app.use((req, res, next) => {
+//   if (!req.originalUrl.includes(buildLocation)) {
+//     res.sendFile(path.resolve(`${__dirname}/${buildLocation}/index.html`));
+//   } else {
+//     next();
+//   }
+// });
 
 app.use('/users', require('./routes/users.js'));
 app.use('/data/pullmans', require('./routes/influx.js'));
