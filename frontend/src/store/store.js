@@ -6,7 +6,7 @@ import VueSocketIO from 'vue-socket.io'
 Vue.use(Vuex)
 Vue.use(Axios)
 
-let apiIP = 'http://192.168.101.55:5000'
+let apiIP = 'http://localhost:5000'
 
 const store = new Vuex.Store({
   state: {

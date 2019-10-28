@@ -1,5 +1,5 @@
 <template>
-  <l-map style="height: 90%; width: 100%" :zoom="zoom" :center="center" :options="{zoomControl: true}">
+  <l-map style="height: 90%; width: 98%" :zoom="zoom" :center="center" :options="{zoomControl: true}">
     <l-tile-layer :url="url"></l-tile-layer>
     <l-polyline
       :lat-lngs="polyline.latlngs"
@@ -39,8 +39,7 @@ export default {
     setInterval(() => {
       try {
         this.center = this.$store.getters.firstCoords || [45.9626521, 12.6550436]
-        if(this.$store.getters.coords && this.$store.getters.coords[0] && this.$store.getters.coords[1]) { this.polyline.latlngs = this.$store.getters.coords }
-        //console.log(this.$store.getters.coords)
+        if(this.$store.getters.coords) { this.polyline.latlngs = this.$store.getters.coords }
       }
       catch {
         
