@@ -23,6 +23,7 @@ export default {
   mounted() {
     this.sockets.subscribe("PULLMAN_DATA", data => {
       if (data[0] && data[0].latitudine && data[0].longitudine) {
+        console.log(data[0])
         this.$store.commit('SET_PULLMAN_INFLUX', data[0])
         this.$store.commit('ADD_COORDS', [data[0].latitudine, data[0].longitudine])
         this.$emit('pullmanData',data)
