@@ -37,8 +37,14 @@ export default {
   sockets: {},
   created() {
     setInterval(() => {
-      this.center = this.$store.getters.firstCoords || [45.9626521, 12.6550436]
-      if(this.$store.getters.coords) { this.polyline.latlngs = this.$store.getters.coords }
+      try {
+        this.center = this.$store.getters.firstCoords || [45.9626521, 12.6550436]
+        if(this.$store.getters.coords && this.$store.getters.coords[0] && this.$store.getters.coords[1]) { this.polyline.latlngs = this.$store.getters.coords }
+        //console.log(this.$store.getters.coords)
+      }
+      catch {
+        
+      }
     },1000)
   },
   mounted() {}

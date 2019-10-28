@@ -6,7 +6,7 @@ import VueSocketIO from 'vue-socket.io'
 Vue.use(Vuex)
 Vue.use(Axios)
 
-let apiIP = 'http://127.0.0.1:5000'
+let apiIP = 'http://192.168.101.55:5000'
 
 const store = new Vuex.Store({
   state: {
@@ -52,8 +52,8 @@ const store = new Vuex.Store({
       state.token = token
       localStorage.setItem('AUTH_TOKEN', token)
       let socketIO = new VueSocketIO({
-        debug: true,
-        connection: 'http://127.0.0.1:5000',
+        debug: false,
+        connection: apiIP,
         autoConnect: false,
         vuex: {
             store,
