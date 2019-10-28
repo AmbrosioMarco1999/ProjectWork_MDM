@@ -14,7 +14,8 @@ const store = new Vuex.Store({
     pullmans: [],
     selected_pullman: null,
     lastPullmanRes: {},
-    coords: []
+    coords: [],
+    loginError: ''
   },
   getters: {
     isLogged: state => {
@@ -45,6 +46,9 @@ const store = new Vuex.Store({
     },
     firstCoords: state => {
       return state.coords[0]
+    },
+    loginError: state => {
+      return state.loginError
     }
   },
   mutations: {
@@ -89,6 +93,9 @@ const store = new Vuex.Store({
     },
     DELETE_COORDS: (state, payload) => {
       state.coords = []
+    },
+    SET_LOGIN_ERROR: (state, payload) => {
+      state.loginError = payload
     }
   },
   actions: {
@@ -98,7 +105,7 @@ const store = new Vuex.Store({
           context.commit('SET_TOKEN', res.data.token)
         })
         .catch((err) => {
-          console.log(err)
+          context.commit('SET_LOGIN_ERROR', err)
         })
     },
     GET_PULLMANS(context) {
