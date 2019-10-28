@@ -1,7 +1,7 @@
-const ip = '172.17.0.3';
+const ip = 'localhost';
 //MondoDB string
 exports.mongoConnectionString = 'mongodb://admin:password@'+ip+'/admin';
 //Influx String
-exports.influxIp = '172.17.0.2';
+exports.influxIp = 'localhost';
 // Auth token secret
 exports.secret = "tisossotuttalavita";

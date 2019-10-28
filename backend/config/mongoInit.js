@@ -47,14 +47,14 @@ function init() {
           })
           .catch(err => console.log(err));
       })
-    }
+    } else { console.log('Pullman già a db') }
   })
-  User.findOne({ email: 'admin@trakkabus.it' }).then(user => {
+  User.findOne({ email: adminUser.email }).then(user => {
     if (!user) {
-      const newUser = new User({ adminUser });
+      const newUser = new User( adminUser );
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) { Console.log('Errore interno') };
+          if (err) { console.log('Errore interno') };
           newUser.password = hash;
           newUser
             .save()
