@@ -93,7 +93,7 @@ namespace ProjectWorking.Mezzi
             //Console.WriteLine("Count: " + (_percorsoPullman.Count-1).ToString());
             if(_movimento == true)
             {
-                if(_rootStatus==(_percorsoPullman.Count-2)){
+                if(_rootStatus==(_percorsoPullman.Count-1)){
                     _rootStatus=0;
                 }
                 _posizione = _percorsoPullman[_rootStatus];
