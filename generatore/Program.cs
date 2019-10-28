@@ -71,19 +71,19 @@ namespace ProjectWorking
             string json = JsonConvert.SerializeObject(p, Formatting.Indented);
             return json;            
         }
-
+        
         static async void sendToApi(string data){
             try{
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("http://192.168.0.2:5000/");
+                    client.BaseAddress = new Uri("http://127.0.0.1:5000/data/");
                     var content = new StringContent(data, Encoding.UTF8, "application/json"); 
-                    var result = await client.PostAsync("pullman", content);
+                    var result = await client.PostAsync("pullmans", content);
                     string resultContent = await result.Content.ReadAsStringAsync();
                 }
             }catch
             {
-
+				Console.WriteLine("soos");
             }
         }
     }
