@@ -161,10 +161,10 @@ namespace ProjectWorking.Mezzi
             while((linea = sr.ReadLine()) != null){
                 if(linea.Trim()=="["){
                     linea = sr.ReadLine();
-                    posizione.SetLat(Convert.ToDouble(linea));
+                    posizione.SetLon(Convert.ToDouble(linea));
 //                  Console.WriteLine(posizione.GetLat());
                     linea=sr.ReadLine();
-                    posizione.SetLon(Convert.ToDouble(linea));
+                    posizione.SetLat(Convert.ToDouble(linea));
 //                  Console.WriteLine(posizione.GetLon());
                     linea=sr.ReadLine();
                 }
