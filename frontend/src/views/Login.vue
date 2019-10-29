@@ -1,35 +1,35 @@
 <template>
   <section class="hero is-light is-fullheight">
     <div class="hero-body">
-      <div class="container">
-        <div class="columns is-centered">
-          <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-            <div action class="box">
+      <div class="container has-text-centered">
+        <div class="column is-4 is-offset-4">
+          <div class="box">
+            <figure class="avatar">
+              <img src="../assets/logo.png" width="200" />
+            </figure>
               <div class="field">
-                <label for class="label">Email</label>
-                <div class="control has-icons-left">
-                  <input v-model="email" type="text" placeholder="e.g. bobsmith@gmail.com" class="input" />
+                <div class="control">
+                  <input v-model="email" type="text" placeholder="email" class="input is-large" />
                   <span class="icon is-small is-left">
                     <i class="fa fa-envelope"></i>
                   </span>
                 </div>
               </div>
               <div class="field">
-                <label for class="label">Password</label>
-                <div class="control has-icons-left">
-                  <input v-model="password" type="password" placeholder="*******" class="input"/>
+                <div class="control">
+                  <input v-model="password" type="password" placeholder="*******" class="input is-large"/>
                   <span class="icon is-small is-left">
                     <i class="fa fa-lock"></i>
                   </span>
                 </div>
-              </div> 
+              </div>
               <div v-if="this.$store.getters.loginError" class="notification is-danger">
                 {{ this.$store.getters.loginError }}
               </div>
-              <div class="field">
-                <button class="button is-light" @click="login">Login</button>
-              </div>
-            </div>
+              <button class="button is-block is-light is-large is-fullwidth" @click="login">
+                Login
+                <i class="fa fa-sign-in" aria-hidden="true"></i>
+              </button>
           </div>
         </div>
       </div>
@@ -43,14 +43,17 @@ export default {
   data() {
     return {
       email: null,
-      password: null,
+      password: null
     };
   },
   props: {},
   methods: {
     login() {
-      this.$store.dispatch('USER_LOGIN', {email: this.email, password: this.password})
-      this.$router.push('/dashboard')
+      this.$store.dispatch("USER_LOGIN", {
+        email: this.email,
+        password: this.password
+      });
+      this.$router.push("/dashboard");
     }
   },
   computed: {},

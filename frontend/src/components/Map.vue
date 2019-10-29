@@ -22,7 +22,7 @@ export default {
     data () {
     return {
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-      zoom: 13,
+      zoom: 15,
       center: [45.9, 12.6],
       polyline: {
         latlngs: [],

@@ -1,16 +1,12 @@
   <template>
   <li>
-    <a class="panel-block is-marginless is-paddingless" @click="click">
+    <a class="panel-block is-marginless is-paddingless" v-bind:class="{ 'nopointer': !isActive }" @click="click">
       <div class="card">
         <div class="card-content">
-          <p class="subtitle">{{ pullman.targa }}</p>
+          <p class="subtitle"> 
+            <span class="dot" v-bind:class="( isActive ? 'active' : 'offline' )">
+            </span> {{ pullman.targa }}</p>
         </div>
-        <footer class="card-footer">
-          <p class="card-footer-item">
-            <span class="has-text-success" v-if="isActive">Active</span>
-            <span class="has-text-danger" v-else>Offline</span>
-          </p>
-        </footer>
       </div>
     </a>
   </li>
@@ -35,7 +31,9 @@ export default {
   },
   methods: {
     click() {
-      this.$store.commit("SELECT_PULLMAN", this.pullman);
+      if(this.isActive) {
+        this.$store.commit("SELECT_PULLMAN", this.pullman);
+      }
     },
     check() {
       let found = false;
@@ -63,4 +61,20 @@ export default {
 </script>
 
 <style scoped>
+
+.dot {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.active {
+  background-color: green;
+}
+.offline {
+  background-color: red;
+}
+.nopointer {
+  cursor: default
+}
 </style>

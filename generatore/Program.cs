@@ -16,7 +16,7 @@ namespace ProjectWorking
 
             int pullmanNumber = 6;
             int count = 0;
-            var redis = new RedisClient("192.168.0.18");
+            var redis = new RedisClient("127.0.0.1");
             Pullman p1 = new Pullman("CA128TD",70);  
             Pullman p2 = new Pullman("DB94111",40); 
             Pullman p3 = new Pullman("AA17424",50);
@@ -34,15 +34,12 @@ namespace ProjectWorking
                 p5.Update();
                 p6.Update();
                 
-//                Console.WriteLine((JsonCreator(p3)));
                 // sendToApi(JsonCreator(p1));
                 // sendToApi(JsonCreator(p2));
                 // sendToApi(JsonCreator(p3));                
                 // sendToApi(JsonCreator(p4));
                 // sendToApi(JsonCreator(p5));
                 // sendToApi(JsonCreator(p6));
-
-
 
                 redis.LPush("sensors_data",JsonCreator(p1));
                 redis.LPush("sensors_data",JsonCreator(p2));
@@ -63,29 +60,14 @@ namespace ProjectWorking
                 }
                 else{
                     count ++;
-                }            
-
-                //if(ping()){
-                 //   if(count>0){
-                 //       for(int i=0 ;i<count * pullmanNumber;i++){
-                 //           sendToApi(redis.BLPop(30, "sensors_data"));
-                 //       }
-                 //   }
-                 //   for(int i = 0; i < pullmanNumber; i++){
-                 //       sendToApi(redis.BLPop(30, "sensors_data"));
-                //    }
-                 //   count=0;
-               // }
-                //else{
-                  //  count ++;
-               // }            
+                }                 
             }
         }
         
        static bool ping()
         {
             Ping pingSender = new Ping();
-            PingReply reply = pingSender.Send("8.8.8.8");
+            PingReply reply = pingSender.Send("127.0.0.1");
             if (reply.Status == IPStatus.Success)
             {                
                 return true;

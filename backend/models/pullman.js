@@ -22,7 +22,7 @@ const PullmanSchema = new mongoose.Schema({
     default: null
   },
   anno: {
-    type: Date,
+    type: String,
     default: null
   },
   active: {

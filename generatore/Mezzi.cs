@@ -55,13 +55,6 @@ namespace ProjectWorking.Mezzi
         {
             get => _oraInserimento.ToString("MM/dd/yyyy HH:mm:ss");
         }
-
-        // private Percorso _percorso;
-        // public int IdPercorso{
-        //     get => Percorsi.IndexOf(_percorso);
-        // }
-
-
         private bool _started;
         public bool Started{
             get => _started;
@@ -90,17 +83,14 @@ namespace ProjectWorking.Mezzi
         public void Update()
         {
             _started = true;
-            //Console.WriteLine("Count: " + (_percorsoPullman.Count-1).ToString());
             if(_movimento == true)
             {
                 if(_rootStatus==(_percorsoPullman.Count-1)){
                     _rootStatus=0;
                 }
                 _posizione = _percorsoPullman[_rootStatus];
-                // _posizione.Change();
                 int random = rnd.Next(0,30);
                 _rootStatus++;
-                //_posizione = _percorsoPullman[_rootStatus];
                 
                 if(random == 0)
                 {
@@ -119,40 +109,6 @@ namespace ProjectWorking.Mezzi
             }
             _oraInserimento=DateTime.Now;
         }
-
-/*        private static double CoordsGenerator()
-        {
-            double minimum = -20;
-            double maximum = 20;
-            Random random = new Random();
-            return Math.Round((random.NextDouble() * (maximum - minimum) + minimum),5);
-        }
-*/
-/*        private static Percorso PercorsoGenerator()
-        {
-            Posizione partenza = new Posizione(CoordsGenerator(), CoordsGenerator());
-            Posizione arrivo = new Posizione(CoordsGenerator(), CoordsGenerator());
-
-            Percorso percorso = new Percorso(partenza, arrivo);
-
-
-            return percorso;
-        }
-*/
-/*        private static List<Percorso> GeneratorlstPercorsi()
-        {
-            List<Percorso> lstPercorsi = new List<Percorso>();
-
-            for (int i = 0; i < 10; i++)
-            {
-                //lstPercorsi[i]=PercorsoGenerator();
-                lstPercorsi.Add(PercorsoGenerator());
-            }
-
-            return lstPercorsi;
-        }
-*/   
-
         public List<Posizione> Percorso(string nomeFile)
         {
             string linea="";
@@ -164,21 +120,14 @@ namespace ProjectWorking.Mezzi
                 if(linea.Trim()=="["){
                     linea = sr.ReadLine();
                     posizione.SetLon(Convert.ToDouble(linea));
-//                  Console.WriteLine(posizione.GetLat());
                     linea=sr.ReadLine();
                     posizione.SetLat(Convert.ToDouble(linea));
-//                  Console.WriteLine(posizione.GetLon());
                     linea=sr.ReadLine();
                 }
                 lstTappe.Add(posizione);
                 posizione=new Posizione();
             }
-            // foreach (var item in lstTappe)
-            // {
-            //     Console.WriteLine(item.GetLat());
-            //     Console.WriteLine(item.GetLon());
-            //     Console.WriteLine();
-            // }
+
             return lstTappe;
         }
     }
