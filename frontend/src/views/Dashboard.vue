@@ -11,20 +11,20 @@
           <div class="columns">
             <div class="column is-12 has-text-centered" style="height:60vh">
               <h1 class="title">{{ pullman.targa }}</h1>
-              <Map />
+              <Map v-if="this.$store.getters.pullman" />
             </div>
             </div>
             <div class="columns">
-              <div class="column is-2">
-              <strong>Max Posti:</strong>{{ pullman.max_posti }} <br>
-              <strong>Allestimento:</strong>{{ pullman.allestimento }}<br>
-              <strong>Modello:</strong>{{ pullman.modello }}<br>
-              <strong>Anno:</strong>{{ pullman.anno ? pullman.anno.slice(0, 10) : null }}<br>
-              <strong>Targa:</strong>{{ pullman.targa }}<br>
-              <strong>Latitudine:</strong>{{ selectedPullmanData.latitudine }}<br>
-              <strong>Longitudine:</strong>{{ selectedPullmanData.longitudine }}<br>
-              <strong>Movimento:</strong>{{ selectedPullmanData.movimento }}<br>
-              <strong>Persone a bordo:</strong>{{ selectedPullmanData.personeABordo }}
+              <div v-if="this.$store.getters.pullman" class="column is-2">
+              <strong>Max Posti:</strong>{{' ' + pullman.max_posti }} <br>
+              <strong>Allestimento:</strong>{{' ' + pullman.allestimento }}<br>
+              <strong>Modello:</strong>{{' ' + pullman.modello }}<br>
+              <strong>Anno:</strong>{{' ' + pullman.anno ? pullman.anno.slice(0, 10) : null }}<br>
+              <strong>Targa:</strong>{{' ' + pullman.targa }}<br>
+              <strong>Latitudine:</strong>{{' ' + selectedPullmanData.latitudine }}<br>
+              <strong>Longitudine:</strong>{{' ' + selectedPullmanData.longitudine }}<br>
+              <strong>Movimento:</strong>{{' ' + selectedPullmanData.movimento }}<br>
+              <strong>Persone a bordo:</strong>{{' ' + selectedPullmanData.personeABordo }}
               </div>
               <div class="column is-10"> <Graph @pullmanData="pullmanData" /> </div>
             </div>
