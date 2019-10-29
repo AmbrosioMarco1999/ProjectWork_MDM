@@ -5,12 +5,17 @@
       :lat-lngs="polyline.latlngs"
       :color="polyline.color">
     </l-polyline>
+    <l-circle v-if="isActive"
+      :lat-lng="circle.center"
+      :radius="circle.radius"
+      :color="circle.color"
+    />
   </l-map>
 </template>
 
 <script>
 
-import {LMap, LTileLayer, LMarker, LPolyline } from 'vue2-leaflet';
+import {LMap, LTileLayer, LMarker, LPolyline, LCircle } from 'vue2-leaflet';
 
 export default {
   name: "Map",
@@ -22,7 +27,13 @@ export default {
       polyline: {
         latlngs: [],
         color: 'red'
-      }
+      },
+      circle: {
+        center: [0, 0],
+        radius: 3,
+        color: 'red'
+      },
+      isActive: false
     };
   },
   props: {},
@@ -30,7 +41,8 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
-    LPolyline
+    LPolyline,
+    LCircle
   },
   methods: {},
   computed: {},
@@ -39,7 +51,12 @@ export default {
     setInterval(() => {
       try {
         this.center = this.$store.getters.firstCoords || [45.9626521, 12.6550436]
-        if(this.$store.getters.coords) { this.polyline.latlngs = this.$store.getters.coords }
+        if(this.$store.getters.coords) {
+          let coords = this.$store.getters.coords
+          //this.circle.center = coords[coords.length - 1]
+          this.polyline.latlngs = coords; 
+          //this.isActive = true
+        }
       }
       catch {
         
