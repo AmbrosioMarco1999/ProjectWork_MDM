@@ -1,6 +1,6 @@
   <template>
   <li>
-    <a class="panel-block is-marginless is-paddingless" @click="click">
+    <a class="panel-block is-marginless is-paddingless" v-bind:class="{ 'nopointer': !isActive }" @click="click">
       <div class="card">
         <div class="card-content">
           <p class="subtitle"> 
@@ -31,7 +31,9 @@ export default {
   },
   methods: {
     click() {
-      this.$store.commit("SELECT_PULLMAN", this.pullman);
+      if(this.isActive) {
+        this.$store.commit("SELECT_PULLMAN", this.pullman);
+      }
     },
     check() {
       let found = false;
@@ -72,5 +74,7 @@ export default {
 .offline {
   background-color: red;
 }
-
+.nopointer {
+  cursor: default
+}
 </style>
