@@ -16,7 +16,7 @@ namespace ProjectWorking
 
             int pullmanNumber = 6;
             int count = 0;
-            var redis = new RedisClient("192.168.0.18");
+            var redis = new RedisClient("127.0.0.1");
             Pullman p1 = new Pullman("CA128TD",70);  
             Pullman p2 = new Pullman("DB94111",40); 
             Pullman p3 = new Pullman("AA17424",50);
