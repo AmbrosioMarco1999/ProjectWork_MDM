@@ -22,6 +22,9 @@
                     <i class="fa fa-lock"></i>
                   </span>
                 </div>
+              </div> 
+              <div v-if="this.$store.getters.loginError" class="notification is-danger">
+                {{ this.$store.getters.loginError }}
               </div>
               <div class="field">
                 <button class="button is-light" @click="login">Login</button>
@@ -40,7 +43,7 @@ export default {
   data() {
     return {
       email: null,
-      password: null
+      password: null,
     };
   },
   props: {},
