@@ -18,11 +18,7 @@ namespace ProjectWorking.Gps
         }
         public void Change()
         {
-            // _latitudine +=0.0020;
-            // _longitudine -=0.0020;
-            // _latitudine = Math.Round(_latitudine,5);
-            // _longitudine = Math.Round(_longitudine,5);
-            
+
         }
 
         public double GetLat()
