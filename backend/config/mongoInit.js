@@ -4,16 +4,16 @@ const bcrypt = require('bcryptjs');
 const config = require('./keys')
 
 var pullmans = [
-  { targa: 'CA128TD', max_posti: 70, allestimento: '', marca: '', modello: '', anno: 2002, active: true },
-  { targa: 'DB94111', max_posti: 40, allestimento: '', marca: '', modello: '', anno: 2002, active: true },
-  { targa: 'AA17424', max_posti: 50, allestimento: '', marca: '', modello: '', anno: 2002, active: true },
-  { targa: 'EE119CA', max_posti: 70, allestimento: '', marca: '', modello: '', anno: 2002, active: true },
-  { targa: 'PI11063', max_posti: 70, allestimento: '', marca: '', modello: '', anno: 2002, active: true },
-  { targa: 'PD54715', max_posti: 30, allestimento: '', marca: '', modello: '', anno: 2002, active: true },
-  { targa: 'SA88180', max_posti: 50, allestimento: '', marca: '', modello: '', anno: 2002, active: true },
-  { targa: 'PD2345B', max_posti: 70, allestimento: '', marca: '', modello: '', anno: 2002, active: true },
-  { targa: 'PI2933G', max_posti: 80, allestimento: '', marca: '', modello: '', anno: 2002, active: true },
-  { targa: 'RMSUF74', max_posti: 40, allestimento: '', marca: '', modello: '', anno: 2002, active: true },
+  { targa: 'CA128TD', max_posti: 70, allestimento: 'Full optional', marca: 'Setra', modello: 'S 416 GT-HD', anno: 2000, active: true },
+  { targa: 'DB94111', max_posti: 40, allestimento: 'Full optional', marca: 'Heuliez', modello: 'GX417', anno: 1990, active: true },
+  { targa: 'AA17424', max_posti: 50, allestimento: 'Full optional', marca: 'Van Hool', modello: 'A 360 CNG', anno: 2005, active: true },
+  { targa: 'EE119CA', max_posti: 70, allestimento: 'Full optional', marca: 'Setra', modello: 'S 416 UL', anno: 2015, active: true },
+  { targa: 'PI11063', max_posti: 70, allestimento: 'Full optional', marca: 'Van Hool', modello: 'A 330 Hyb', anno: 2007, active: true },
+  { targa: 'PD54715', max_posti: 30, allestimento: 'Full optional', marca: 'Setra', modello: 'S 517 HDH', anno: 2012, active: true },
+  { targa: 'SA88180', max_posti: 50, allestimento: 'Full optional', marca: 'Heuliez', modello: 'GX87', anno: 2018, active: true },
+  { targa: 'PD2345B', max_posti: 70, allestimento: 'Full optional', marca: 'Van Hool', modello: 'AG 300 Hyb', anno: 2003, active: true },
+  { targa: 'PI2933G', max_posti: 80, allestimento: 'Full optional', marca: 'Heuliez', modello: 'GX137', anno: 2008, active: true },
+  { targa: 'RMSUF74', max_posti: 40, allestimento: 'Full optional', marca: 'Setra', modello: 'S 515 HDH', anno: 2009, active: true },
 ]
 
 var adminUser = {
