@@ -39,7 +39,7 @@ module.exports = (server, serveradmin) => {
         .then(results => {
           socket.emit('ACTIVE_PULLMANS', results);
         });
-    }, 1000);
+    }, 3000);
     socket.on('GET_PULLMAN_DATA', function (targa) {
       influx.query(
         "select * from pullman WHERE targa = '" + targa + "' AND time > now() - 10s order by time desc LIMIT 1"

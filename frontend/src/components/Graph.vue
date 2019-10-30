@@ -102,7 +102,7 @@ export default {
             }
           this.$socket.emit("GET_PULLMAN_DATA", this.targa);
       }
-    }, 1000);
+    }, 3000);
   },
   beforeDestroy: function(){
     clearInterval(this.interval)
