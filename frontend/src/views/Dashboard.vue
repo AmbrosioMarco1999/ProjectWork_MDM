@@ -15,7 +15,7 @@
             </div>
             </div>
             <div class="columns">
-              <div class="column is-2">
+              <div class="column is-3">
                 <div class="box">
                   <strong>Max Posti:</strong>{{' ' + pullman.max_posti }} <br>
                   <strong>Allestimento:</strong>{{' ' + pullman.allestimento }}<br>
@@ -28,7 +28,7 @@
                   <strong>Persone a bordo:</strong>{{' ' + selectedPullmanData.personeABordo }}
                 </div>
               </div>
-              <div class="column is-10"> <Graph @pullmanData="pullmanData" /> </div>
+              <div class="column is-9"> <Graph @pullmanData="pullmanData" /> </div>
             </div>
         </div>
         <div v-else class="column is-12">
