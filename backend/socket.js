@@ -11,17 +11,13 @@ module.exports = (server, serveradmin) => {
     secret: config.secret,
     algorithm: 'HS256'
   }, function (payload, done) {
-    // done is a callback, you can use it as follows
     User.findOne({ id: payload.sub }, function (err, user) {
       if (err) {
-        // return error
         return done(err);
       }
       if (!user) {
-        // return fail with an error message
         return done(null, false, 'user does not exist');
       }
-      // return success with a user info
       return done(null, user);
     });
   }));

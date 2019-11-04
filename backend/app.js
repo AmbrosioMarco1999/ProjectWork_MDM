@@ -32,23 +32,12 @@ mongoose
   .catch(err => console.log(err.message));
 
 app.use(function (req, res, next) {
-  // IZI
   next();
 })
 
 //Serving front-end
 const staticFileMiddleware = express.static('../frontend/dist');
 app.use(staticFileMiddleware);
-
-
-// const buildLocation = '../frontend/dist';
-// app.use((req, res, next) => {
-//   if (!req.originalUrl.includes(buildLocation)) {
-//     res.sendFile(path.resolve(`${__dirname}/${buildLocation}/index.html`));
-//   } else {
-//     next();
-//   }
-// });
 
 app.use('/users', require('./routes/users.js'));
 app.use('/data/pullmans', require('./routes/influx.js'));
